@@ -1,5 +1,5 @@
 /* ============================================================
-   FAAST Physical Therapy — styles.css
+   FAAST Physical Therapy - styles.css
    Warm premium healthcare: forest / sage / cream / copper
    Three voices: forest = structure, cream = calm, copper = action
    ============================================================ */
@@ -16,7 +16,7 @@
   --sage: #8AA68F;         /* secondary on dark */
   --sage-deep: #5E7B66;    /* muted text on cream */
   --ink: #1B2620;          /* body text on cream */
-  --copper: #A3551F;       /* action — white text passes AA */
+  --copper: #A3551F;       /* action - white text passes AA */
   --copper-bright: #C26A33;/* copper accent on light */
   --copper-hover: #8E471A;
   --bone: #FFFFFF;
@@ -125,7 +125,7 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 }
 
 /* ============================================================
-   NAV — condensation ladder (≥1240 full, ≤1240 tag drops,
+   NAV - condensation ladder (≥1240 full, ≤1240 tag drops,
    ≤1140 one-word labels, ≤820 nav hidden + Call now)
    ============================================================ */
 .nav {
@@ -317,7 +317,7 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 .zone:hover .zone-dot { transform: scale(1.18); }
 .zone:focus-visible { outline: 3px solid var(--copper-bright); outline-offset: 2px; border-radius: 50%; }
 .zone.is-active .zone-dot {
-  background: #C73E1D; /* red — earned: this is the pain-selection state */
+  background: #C73E1D; /* red - earned: this is the pain-selection state */
   animation: pulse 1.6s ease-out infinite;
 }
 @keyframes pulse {
@@ -396,7 +396,7 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 .review-card { background: var(--bone); border: 1px solid var(--cream-3); border-radius: var(--radius); padding: 26px; box-shadow: var(--shadow-card); }
 .stars { color: var(--copper-bright); letter-spacing: 2px; margin: 0 0 12px; font-size: 1.1rem; }
 .review-text { margin: 0 0 16px; font-size: 1.0625rem; line-height: 1.55; }
-.review-text::before { content: "“"; font-family: var(--font-display); font-size: 1.4em; color: var(--copper); line-height: 0; vertical-align: -0.1em; margin-right: 2px; }
+.review-text::before { content: """; font-family: var(--font-display); font-size: 1.4em; color: var(--copper); line-height: 0; vertical-align: -0.1em; margin-right: 2px; }
 .review-name { font-weight: 600; color: var(--forest); margin: 0; }
 .reviews-note { text-align: center; color: var(--sage-deep); margin: 24px 0 0; font-size: .92rem; }
 
@@ -441,7 +441,7 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 }
 .faq-q::-webkit-details-marker { display: none; }
 .faq-q::after { content: "+"; font-family: var(--font-body); font-weight: 400; font-size: 1.6rem; color: var(--copper); transition: transform .2s; }
-.faq-item[open] .faq-q::after { content: "–"; }
+.faq-item[open] .faq-q::after { content: "-"; }
 .faq-a { padding: 0 24px 22px; color: var(--ink); }
 .faq-a p { margin: 0; }
 
@@ -491,7 +491,7 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 .foot-demo-note { font-style: italic; opacity: .8; }
 
 /* ============================================================
-   RESPONSIVE — condensation ladder + grid collapse
+   RESPONSIVE - condensation ladder + grid collapse
    ============================================================ */
 
 /* ≤1240: wordmark tag drops, nav tightens */

@@ -1,5 +1,5 @@
 /* ============================================================
-   FAAST Physical Therapy — app.js
+   FAAST Physical Therapy - app.js
    No dependencies. Progressive enhancement only.
    ============================================================ */
 (function () {
@@ -49,12 +49,12 @@
 
   /* ---------- Pain map ---------- */
   var CONDITIONS = {
-    neck:    { title: "Neck & whiplash", body: "Stiffness, tension headaches, and post-accident whiplash. We restore range of motion and retrain the muscles that keep your head balanced — so it stops stealing your sleep and your focus." },
+    neck:    { title: "Neck & whiplash", body: "Stiffness, tension headaches, and post-accident whiplash. We restore range of motion and retrain the muscles that keep your head balanced - so it stops stealing your sleep and your focus." },
     shoulder:{ title: "Shoulder & rotator cuff", body: "Rotator cuff strains, frozen shoulder, and impingement that make reaching overhead a gamble. Hands-on mobilization and a progressive loading plan bring full, pain-free motion back." },
     elbow:   { title: "Elbow, wrist & hand", body: "Tennis and golfer's elbow, carpal tunnel, and sprains. We quiet the inflammation, correct the mechanics that caused it, and rebuild grip and wrist strength." },
-    back:    { title: "Lower back & sciatica", body: "The number-one reason people walk in. Disc issues, sciatica, muscle strains, and stiffness that won't quit — assessed hands-on and treated with a clear plan to get you bending, lifting, and sleeping comfortably again." },
+    back:    { title: "Lower back & sciatica", body: "The number-one reason people walk in. Disc issues, sciatica, muscle strains, and stiffness that won't quit - assessed hands-on and treated with a clear plan to get you bending, lifting, and sleeping comfortably again." },
     hip:     { title: "Hip & pelvis", body: "Bursitis, post-surgical recovery, and the gait problems that travel down your leg. We rebuild stability and movement so each step stops sending pain elsewhere." },
-    knee:    { title: "Knee & leg", body: "ACL and meniscus rehab, post-op recovery, and arthritis. A structured progression restores strength and confidence — whether you're returning to sport or just to the stairs." },
+    knee:    { title: "Knee & leg", body: "ACL and meniscus rehab, post-op recovery, and arthritis. A structured progression restores strength and confidence - whether you're returning to sport or just to the stairs." },
     ankle:   { title: "Ankle & foot", body: "Sprains, plantar fasciitis, and Achilles trouble. We rebuild balance and the support chain above the ankle so it stops rolling and stops hurting with every step." }
   };
 
@@ -80,7 +80,7 @@
 
   /* ---------- Location sync (hero bar ↔ book toggle ↔ Cal.com ↔ callback) ---------- */
   // CAL_USERNAME must be replaced with the practice's Cal.com username at deploy.
-  // Links are "username/event-slug" (no full URL) — Cal's embed.js builds the iframe.
+  // Links are "username/event-slug" (no full URL) - Cal's embed.js builds the iframe.
   var CAL = {
     hillside: "CAL_USERNAME/hillside",
     carle:    "CAL_USERNAME/carle-place"
@@ -105,7 +105,7 @@
 
   // Render the Cal.com booking calendar for a location into #calEmbed.
   // embed.js (loader in <head>) exposes window.Cal; calls queue until it loads.
-  // Clearing the box first means switching locations replaces — not stacks — embeds.
+  // Clearing the box first means switching locations replaces - not stacks - embeds.
   function renderCal(loc) {
     var box = document.getElementById("calEmbed");
     if (!box || !CAL[loc]) return;
@@ -113,7 +113,7 @@
     if (!window.Cal) return;
     box.innerHTML = "";
     try { window.Cal("inline", { elementOrSelector: "#calEmbed", calLink: CAL[loc] }); }
-    catch (e) { /* Cal loader not ready or invalid link — fail quietly so the page stays interactive. */ }
+    catch (e) { /* Cal loader not ready or invalid link - fail quietly so the page stays interactive. */ }
   }
 
   function selectLocation(loc) {
