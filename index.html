@@ -19,6 +19,21 @@
 
   <link rel="stylesheet" href="styles.css" />
 
+  <!-- Cal.com embed loader — defines window.Cal (a queue) synchronously,
+       lazily fetches embed.js. Plain <iframe src="cal.com/..."> gets refused
+       (X-Frame-Options), so the booking calendar must go through this loader. -->
+  <script>
+    (function (C, A) {
+      C.Cal = C.Cal || function () {
+        var cal = C.Cal, ar = arguments;
+        if (!cal.loaded) { cal.ns = {}; cal.q = cal.q || [];
+          C.document.head.appendChild(C.document.createElement("script")).src = A;
+          cal.loaded = true; }
+        return cal.libs ? cal.apply(null, ar) : cal.q.push(ar);
+      };
+    })(window, "https://cal.com/embed.js");
+  </script>
+
   <!--
     ============================================================
     DECISIONS LOG — travels with the code (read before editing)
@@ -623,18 +638,17 @@
       <div class="booking-grid">
         <div class="cal-embed">
           <!--
-            CAL.COM EMBED — replace CAL_USERNAME (twice) with the practice's Cal.com username,
-            and the two event slugs if they differ from /hillside and /carle-place.
-            Free tier supports unlimited event types, so one per location is $0.
+            CAL.COM EMBED — embed.js (loaded in <head>) renders the booking
+            calendar INTO this div. The username + event slugs live in app.js
+            (CAL = { hillside: "CAL_USERNAME/hillside", carle: "CAL_USERNAME/carle-place" }).
+            Replace CAL_USERNAME with the practice's Cal.com username, and the
+            two slugs if they differ. One event type per location; free tier is unlimited.
           -->
-          <iframe
+          <div
             id="calEmbed"
-            src="https://cal.com/CAL_USERNAME/hillside?embed=true&embedType=inline&layout=month"
-            title="Book an appointment at Hillside Avenue"
-            loading="lazy"
-            frameborder="0"
-            allow="clipboard-write"
-            style="width:1px;min-width:100%;height:640px;border:0"></iframe>
+            class="cal-stage"
+            aria-label="Cal.com booking calendar"
+            style="width:100%;min-height:640px"></div>
         </div>
 
         <aside class="callback">

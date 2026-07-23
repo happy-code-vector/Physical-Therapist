@@ -80,16 +80,16 @@
 
   /* ---------- Location sync (hero bar ↔ book toggle ↔ Cal.com ↔ callback) ---------- */
   // CAL_USERNAME must be replaced with the practice's Cal.com username at deploy.
+  // Links are "username/event-slug" (no full URL) — Cal's embed.js builds the iframe.
   var CAL = {
-    hillside: "https://cal.com/CAL_USERNAME/hillside?embed=true&embedType=inline&layout=month",
-    carle:    "https://cal.com/CAL_USERNAME/carle-place?embed=true&embedType=inline&layout=month"
+    hillside: "CAL_USERNAME/hillside",
+    carle:    "CAL_USERNAME/carle-place"
   };
   var CAL_TITLES = {
     hillside: "Book an appointment at Hillside Avenue (Floral Park)",
     carle:    "Book an appointment at Carle Place"
   };
 
-  var calEmbed = document.getElementById("calEmbed");
   var cbLoc = document.getElementById("cb-loc");
   var heroOptions = Array.prototype.slice.call(document.querySelectorAll("#heroBookingBar .loc-option"));
   var bookOptions = Array.prototype.slice.call(document.querySelectorAll("#bookToggle .loc-option"));
@@ -103,14 +103,24 @@
     });
   }
 
+  // Render the Cal.com booking calendar for a location into #calEmbed.
+  // embed.js (loader in <head>) exposes window.Cal; calls queue until it loads.
+  // Clearing the box first means switching locations replaces — not stacks — embeds.
+  function renderCal(loc) {
+    var box = document.getElementById("calEmbed");
+    if (!box || !CAL[loc]) return;
+    if (CAL_TITLES[loc]) box.setAttribute("aria-label", CAL_TITLES[loc]);
+    if (!window.Cal) return;
+    box.innerHTML = "";
+    try { window.Cal("inline", { elementOrSelector: "#calEmbed", calLink: CAL[loc] }); }
+    catch (e) { /* Cal loader not ready or invalid link — fail quietly so the page stays interactive. */ }
+  }
+
   function selectLocation(loc) {
     setOptionGroup(heroOptions, loc);
     setOptionGroup(bookOptions, loc);
     if (cbLoc) cbLoc.value = loc;
-    if (calEmbed && CAL[loc]) {
-      calEmbed.src = CAL[loc];
-      calEmbed.title = CAL_TITLES[loc] || calEmbed.title;
-    }
+    renderCal(loc);
   }
 
   function wireOptions(group) {
