@@ -13,7 +13,7 @@ Migrate the existing single-page static site (index.html / styles.css / app.js) 
 - **Migration shape: full migration (Approach A).** The homepage becomes an Astro page; the blog joins it. One stack, one nav, one deploy. The working homepage is touched, but HTML/CSS/JS are relocated verbatim, so behavior is preserved and verifiable against the live static site.
 - **Authoring: Markdown in Git, Decap-ready.** Posts are `.md` files committed through the GitHub web editor. No CMS at launch. Field names are chosen so a future Decap `config.yml` can point at the same folder with matching fields - adding the CMS later is additive, not a rewrite.
 - **Blog type: Mixed.** Educational health articles (the SEO play) and clinic news/announcements. The schema separates them via a `category` field, and the listing offers a category filter.
-- **Author byline: defaults to "FAAST Physical Therapy"** (verified). Individual posts may name Dr. Iftikhar once his full name and credentials are confirmed. Names/credentials are not invented.
+- **Author byline: defaults to "Dr. Asim Iftikhar, DPT"** - the name and credentials already published in the site's provider section and JSON-LD. Posts may override per author.
 
 ## Non-goals (MVP)
 
@@ -81,7 +81,7 @@ const blog = defineCollection({
     excerpt: z.string(),                          // listing + meta description + OG
     category: z.enum(['article', 'news']),        // educational vs. clinic update
     tags: z.array(z.string()).default([]),
-    author: z.string().default('FAAST Physical Therapy'),
+    author: z.string().default('Dr. Asim Iftikhar, DPT'),
     image: z.object({ url: z.string(), alt: z.string() }).optional(),
     draft: z.boolean().default(false),
   }),
@@ -91,7 +91,7 @@ export const collections = { blog };
 ```
 
 - `category` separates SEO articles from clinic news; the listing gets a filter (All / Articles / Clinic News).
-- `author` defaults to the practice name. Per-post bylines may name Dr. Iftikhar after his full name and credentials are confirmed.
+- `author` defaults to 'Dr. Asim Iftikhar, DPT', the name already published on the site. Posts may override per author.
 - `draft` and `pubDate` map directly onto Decap fields, so the CMS is a future additive change.
 
 ## Blog pages
@@ -153,7 +153,6 @@ This is a migration of an already-verified site. No test framework - verificatio
 - Cal.com username (currently `CAL_USERNAME`).
 - Carle Place real address and hours.
 - Phone-number conflict resolution (516 vs 646).
-- Dr. Iftikhar's full name and credentials for bylines.
 - Production domain for `astro.config.mjs` `site` and canonical URLs.
 - Reviewer names, provider/staff photos, facility video, languages spoken, transit/landmark/parking per location.
 - A2P 10DLC registration (SMS consent already captured in the form).
