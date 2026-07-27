@@ -40,7 +40,7 @@ What gets created and what each file owns:
 - `src/components/PostCard.astro` - one listing item.
 - `src/layouts/BlogPostLayout.astro` - article chrome (wraps BaseLayout).
 - `src/utils/reading-time.ts` - word-count to minutes.
-- `src/content/blog/config.ts` - collection schema.
+- `src/content.config.ts` - collection schema (Astro 5 loads the config from here, not from `src/content/blog/`).
 - `src/content/blog/*.md` - the posts.
 - `src/pages/index.astro` - the migrated homepage.
 - `src/pages/blog/index.astro` - listing + category filter.
@@ -467,13 +467,13 @@ Expected: booking section renders; the location toggle switches `#calEmbed` (wit
 ## Task 8: Blog content collection and a sample post
 
 **Files:**
-- Create: `src/content/blog/config.ts`
+- Create: `src/content.config.ts`
 - Create: `src/content/blog/welcome-to-faast.md` (sample post)
 
 **Interfaces:**
 - Produces: a `blog` collection validated by Zod. Posts have `title`, `pubDate`, `excerpt`, `category` (`'article' | 'news'`), `tags`, `author`, optional `image`, `draft`.
 
-- [ ] **Step 1: Create `src/content/blog/config.ts`**
+- [ ] **Step 1: Create `src/content.config.ts`**
 
 Astro 5 content-layer API (`glob` loader, not the legacy `type: 'content'`):
 
@@ -571,34 +571,34 @@ const dateStr = pubDate.toLocaleDateString('en-US', { year: 'numeric', month: 'l
 
 - [ ] **Step 2: Create `src/styles/blog.css`**
 
-Uses the existing design tokens (`--font-display`, `--font-body`, `--c-forest`, `--c-sage`, `--c-cream`, `--c-copper`) defined in `global.css`. If any token name differs, match the actual names in `global.css` `:root`.
+Uses the existing design tokens defined in `global.css` `:root`: colors `--forest`, `--cream`, `--sage`, `--copper`, `--ink` (body text on cream), `--sage-deep` (muted text); fonts `--font-display`, `--font-body`. (Earlier draft used non-existent `--c-*` names - corrected to the real tokens.)
 
 ```css
 .blog-index { max-width: 1100px; margin: 0 auto; padding: clamp(2.5rem, 6vw, 5rem) 1.25rem; }
 .blog-index__head { margin-bottom: 2rem; }
-.blog-index__title { font-family: var(--font-display); font-size: clamp(2rem, 5vw, 3rem); color: var(--c-forest); }
-.blog-index__lede { color: var(--c-forest); opacity: 0.85; max-width: 60ch; }
+.blog-index__title { font-family: var(--font-display); font-size: clamp(2rem, 5vw, 3rem); color: var(--forest); }
+.blog-index__lede { color: var(--forest); opacity: 0.85; max-width: 60ch; }
 
 .blog-filter { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 1.5rem 0 2.5rem; }
 .blog-filter__btn {
   appearance: none; cursor: pointer; font: inherit;
   padding: 0.45rem 1rem; border-radius: 999px;
-  border: 1px solid var(--c-sage); background: transparent; color: var(--c-forest);
+  border: 1px solid var(--sage); background: transparent; color: var(--forest);
 }
-.blog-filter__btn[aria-pressed="true"] { background: var(--c-forest); color: var(--c-cream); border-color: var(--c-forest); }
+.blog-filter__btn[aria-pressed="true"] { background: var(--forest); color: var(--cream); border-color: var(--forest); }
 
 .post-grid { display: grid; gap: 1.5rem; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); }
-.post-card { background: var(--c-cream); border: 1px solid rgba(0,0,0,0.06); border-radius: 14px; transition: transform 0.15s ease, box-shadow 0.15s ease; }
+.post-card { background: var(--cream); border: 1px solid rgba(0,0,0,0.06); border-radius: 14px; transition: transform 0.15s ease, box-shadow 0.15s ease; }
 .post-card:hover { transform: translateY(-3px); box-shadow: 0 8px 24px rgba(0,0,0,0.08); }
 .post-card__link { display: block; padding: 1.4rem; color: inherit; text-decoration: none; }
-.post-card__chip { display: inline-block; font-size: 0.75rem; letter-spacing: 0.04em; text-transform: uppercase; color: var(--c-copper); margin-bottom: 0.5rem; }
-.post-card__title { font-family: var(--font-display); font-size: 1.35rem; color: var(--c-forest); margin: 0 0 0.4rem; }
-.post-card__date { font-size: 0.85rem; color: var(--c-forest); opacity: 0.7; }
-.post-card__excerpt { margin: 0.6rem 0 0; color: var(--c-forest); opacity: 0.85; }
+.post-card__chip { display: inline-block; font-size: 0.75rem; letter-spacing: 0.04em; text-transform: uppercase; color: var(--copper); margin-bottom: 0.5rem; }
+.post-card__title { font-family: var(--font-display); font-size: 1.35rem; color: var(--forest); margin: 0 0 0.4rem; }
+.post-card__date { font-size: 0.85rem; color: var(--forest); opacity: 0.7; }
+.post-card__excerpt { margin: 0.6rem 0 0; color: var(--forest); opacity: 0.85; }
 .post-card__tags { list-style: none; padding: 0; margin: 0.8rem 0 0; display: flex; flex-wrap: wrap; gap: 0.4rem; }
-.post-card__tags li { font-size: 0.72rem; padding: 0.15rem 0.55rem; border-radius: 999px; background: var(--c-sage); color: var(--c-forest); }
+.post-card__tags li { font-size: 0.72rem; padding: 0.15rem 0.55rem; border-radius: 999px; background: var(--sage); color: var(--forest); }
 
-.blog-empty { padding: 3rem 0; text-align: center; color: var(--c-forest); opacity: 0.7; }
+.blog-empty { padding: 3rem 0; text-align: center; color: var(--forest); opacity: 0.7; }
 .blog-empty[hidden] { display: none; }
 ```
 
@@ -705,18 +705,18 @@ export function readingTime(body: string): number {
 
 ```css
 .post { max-width: 760px; margin: 0 auto; padding: clamp(2.5rem, 6vw, 4.5rem) 1.25rem; }
-.post__byline { display: flex; flex-wrap: wrap; gap: 0.5rem 1rem; align-items: baseline; color: var(--c-forest); opacity: 0.8; font-size: 0.9rem; margin-bottom: 1.5rem; }
-.post__chip { display: inline-block; font-size: 0.75rem; letter-spacing: 0.04em; text-transform: uppercase; color: var(--c-copper); }
-.post__title { font-family: var(--font-display); font-size: clamp(2rem, 5vw, 2.8rem); color: var(--c-forest); margin: 0 0 0.5rem; }
+.post__byline { display: flex; flex-wrap: wrap; gap: 0.5rem 1rem; align-items: baseline; color: var(--forest); opacity: 0.8; font-size: 0.9rem; margin-bottom: 1.5rem; }
+.post__chip { display: inline-block; font-size: 0.75rem; letter-spacing: 0.04em; text-transform: uppercase; color: var(--copper); }
+.post__title { font-family: var(--font-display); font-size: clamp(2rem, 5vw, 2.8rem); color: var(--forest); margin: 0 0 0.5rem; }
 .post__hero { width: 100%; border-radius: 14px; margin: 1.5rem 0 2rem; }
-.post__body { font-family: var(--font-body); font-size: 1.1rem; line-height: 1.7; color: var(--c-forest); }
+.post__body { font-family: var(--font-body); font-size: 1.1rem; line-height: 1.7; color: var(--forest); }
 .post__body h2 { font-family: var(--font-display); margin-top: 2rem; }
-.post__body a { color: var(--c-copper); }
+.post__body a { color: var(--copper); }
 .post__tags { list-style: none; padding: 0; margin: 2.5rem 0 0; display: flex; flex-wrap: wrap; gap: 0.4rem; }
-.post__tags li { font-size: 0.78rem; padding: 0.2rem 0.7rem; border-radius: 999px; background: var(--c-sage); color: var(--c-forest); }
-.post__cta { margin-top: 3rem; padding: 1.5rem; background: var(--c-cream); border-radius: 14px; text-align: center; }
+.post__tags li { font-size: 0.78rem; padding: 0.2rem 0.7rem; border-radius: 999px; background: var(--sage); color: var(--forest); }
+.post__cta { margin-top: 3rem; padding: 1.5rem; background: var(--cream); border-radius: 14px; text-align: center; }
 .post__cta a.btn { display: inline-block; margin-top: 0.75rem; }
-.post__back { display: inline-block; margin-top: 2rem; color: var(--c-forest); opacity: 0.7; text-decoration: none; }
+.post__back { display: inline-block; margin-top: 2rem; color: var(--forest); opacity: 0.7; text-decoration: none; }
 ```
 
 - [ ] **Step 3: Create `src/layouts/BlogPostLayout.astro`**

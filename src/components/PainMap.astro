@@ -1,0 +1,115 @@
+  <!-- ===================== WHAT WE TREAT (pain map) ===================== -->
+  <section class="section" id="treat" aria-labelledby="treat-title">
+    <div class="container">
+      <header class="section-head">
+        <p class="section-eyebrow">What we treat</p>
+        <h2 class="section-title" id="treat-title">Where does it hurt? Tap the spot.</h2>
+        <p class="section-intro">
+          Select a point on the figure to see how we treat it. Lower back is already
+          selected - it's the most common reason people walk in.
+        </p>
+      </header>
+
+      <div class="treat">
+        <!-- Figure -->
+        <div class="figure-card">
+          <div class="figure-stage" id="figureStage">
+            <!-- Inline shaded mannequin: no external dependency, renders everywhere -->
+            <svg class="figure-svg" viewBox="0 0 260 560" role="img"
+                 aria-label="Outline of a human figure with selectable pain points" preserveAspectRatio="xMidYMid meet">
+              <defs>
+                <linearGradient id="figGrad" x1="0" y1="0" x2="1" y2="1">
+                  <stop offset="0" stop-color="#C3D1C0"/>
+                  <stop offset="0.55" stop-color="#8DA690"/>
+                  <stop offset="1" stop-color="#5C7762"/>
+                </linearGradient>
+                <linearGradient id="figShade" x1="0" y1="0" x2="1" y2="0">
+                  <stop offset="0" stop-color="#ffffff" stop-opacity="0.22"/>
+                  <stop offset="0.5" stop-color="#ffffff" stop-opacity="0"/>
+                </linearGradient>
+                <filter id="soft" x="-20%" y="-20%" width="140%" height="140%">
+                  <feGaussianBlur stdDeviation="4"/>
+                </filter>
+              </defs>
+
+              <!-- ground shadow -->
+              <ellipse cx="130" cy="546" rx="74" ry="12" fill="#1E3A2B" opacity="0.12" filter="url(#soft)"/>
+
+              <!-- legs (behind) -->
+              <path d="M118 290 C112 370 112 450 120 520" fill="none" stroke="url(#figGrad)" stroke-width="30" stroke-linecap="round"/>
+              <path d="M150 290 C156 370 156 450 148 520" fill="none" stroke="url(#figGrad)" stroke-width="30" stroke-linecap="round"/>
+
+              <!-- arms -->
+              <path d="M96 134 C70 156 68 210 76 264" fill="none" stroke="url(#figGrad)" stroke-width="21" stroke-linecap="round"/>
+              <path d="M168 134 C194 156 196 210 188 264" fill="none" stroke="url(#figGrad)" stroke-width="21" stroke-linecap="round"/>
+
+              <!-- torso (shoulders -> waist taper) -->
+              <path d="M82 126 Q82 118 92 118 L168 118 Q178 118 178 126 L166 250 Q166 260 156 260 L104 260 Q94 260 94 250 Z"
+                    fill="url(#figGrad)"/>
+              <!-- pelvis -->
+              <path d="M96 256 L166 256 L160 292 Q130 302 100 292 Z" fill="url(#figGrad)"/>
+
+              <!-- neck (overlaps head + torso) -->
+              <path d="M114 92 L146 92 L150 126 L110 126 Z" fill="url(#figGrad)"/>
+
+              <!-- head -->
+              <ellipse cx="130" cy="56" rx="38" ry="42" fill="url(#figGrad)"/>
+
+              <!-- left-side light overlay for 3D feel -->
+              <path d="M82 126 Q82 118 92 118 L110 118 L104 250 Q99 258 94 250 Z" fill="url(#figShade)" opacity="0.6"/>
+              <ellipse cx="116" cy="44" rx="16" ry="26" fill="url(#figShade)" opacity="0.55"/>
+            </svg>
+
+            <!-- Tappable zones (positioned in % over the figure) -->
+            <button class="zone" data-zone="neck" style="--x:49%; --y:18.5%" aria-label="Neck pain">
+              <span class="zone-dot"></span>
+            </button>
+            <button class="zone" data-zone="shoulder" style="--x:35%; --y:24%" aria-label="Shoulder pain">
+              <span class="zone-dot"></span>
+            </button>
+            <button class="zone" data-zone="elbow" style="--x:28%; --y:46%" aria-label="Elbow, wrist and hand pain">
+              <span class="zone-dot"></span>
+            </button>
+            <button class="zone is-active" data-zone="back" style="--x:50%; --y:40%" aria-label="Lower back and sciatica">
+              <span class="zone-dot"></span>
+            </button>
+            <button class="zone" data-zone="hip" style="--x:41%; --y:54%" aria-label="Hip and pelvis pain">
+              <span class="zone-dot"></span>
+            </button>
+            <button class="zone" data-zone="knee" style="--x:42%; --y:74%" aria-label="Knee and leg pain">
+              <span class="zone-dot"></span>
+            </button>
+            <button class="zone" data-zone="ankle" style="--x:44%; --y:91%" aria-label="Ankle and foot pain">
+              <span class="zone-dot"></span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Condition list + detail panel -->
+        <div class="treat-side">
+          <ul class="treat-list" id="treatList">
+            <li><button class="treat-item" data-zone="neck">Neck &amp; whiplash</button></li>
+            <li><button class="treat-item" data-zone="shoulder">Shoulder &amp; rotator cuff</button></li>
+            <li><button class="treat-item" data-zone="elbow">Elbow, wrist &amp; hand</button></li>
+            <li><button class="treat-item is-active" data-zone="back">Lower back &amp; sciatica</button></li>
+            <li><button class="treat-item" data-zone="hip">Hip &amp; pelvis</button></li>
+            <li><button class="treat-item" data-zone="knee">Knee &amp; leg</button></li>
+            <li><button class="treat-item" data-zone="ankle">Ankle &amp; foot</button></li>
+          </ul>
+
+          <div class="treat-panel" id="treatPanel" aria-live="polite">
+            <h3 class="panel-title" id="panelTitle">Lower back &amp; sciatica</h3>
+            <p class="panel-body" id="panelBody">
+              The number-one reason people walk in. Disc issues, sciatica, muscle strains,
+              and stiffness that won't quit - assessed hands-on and treated with a clear
+              plan to get you bending, lifting, and sleeping comfortably again.
+            </p>
+            <a class="panel-cta" href="tel:+15167896322">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.6 21 3 13.4 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.2.2 2.4.6 3.6.1.4 0 .8-.3 1l-2.2 2.2z"/></svg>
+              Book a back-pain assessment - (516) 789-6322
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>

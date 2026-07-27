@@ -35,8 +35,8 @@ Physical-Therapist/
 |  +- app.js               # current client script, UNCHANGED, no bundler transform
 |  +- favicon.*
 +- src/
++- content.config.ts      # Zod collection schema (Astro 5 config location)
 |  +- content/blog/
-|  |  +- config.ts         # Zod collection schema
 |  |  +- *.md              # the posts
 |  +- components/          # Nav, Footer, BaseLayout, PainMap, BookingSection,
 |  |                       #   LocationsSection, FaqSection, PostCard

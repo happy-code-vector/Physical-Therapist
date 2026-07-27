@@ -1,0 +1,77 @@
+  <!-- ===================== BOOKING ===================== -->
+  <section class="section section-dark" id="book" aria-labelledby="book-title">
+    <div class="container">
+      <header class="section-head section-head--light">
+        <p class="section-eyebrow eyebrow-light">Book your visit</p>
+        <h2 class="section-title" id="book-title">Pick a time that works for you.</h2>
+        <p class="section-intro">
+          Choose your location, then select a slot. Booking runs on Cal.com -
+          your confirmation and reminders come straight from the practice.
+        </p>
+      </header>
+
+      <div class="loc-toggle book-toggle" id="bookToggle" role="radiogroup" aria-label="Choose a location to book">
+        <button type="button" class="loc-option is-active" data-loc="hillside" role="radio" aria-checked="true">
+          Hillside Ave <span class="loc-sub">Tue · Thu · Sat</span>
+        </button>
+        <button type="button" class="loc-option" data-loc="carle" role="radio" aria-checked="false">
+          Carle Place <span class="loc-sub">Mon · Wed · Fri</span>
+        </button>
+      </div>
+
+      <div class="booking-grid">
+        <div class="cal-embed">
+          <!--
+            CAL.COM EMBED - embed.js (loaded in <head>) renders the booking
+            calendar INTO this div. The username + event slugs live in app.js
+            (CAL = { hillside: "CAL_USERNAME/hillside", carle: "CAL_USERNAME/carle-place" }).
+            Replace CAL_USERNAME with the practice's Cal.com username, and the
+            two slugs if they differ. One event type per location; free tier is unlimited.
+          -->
+          <div
+            id="calEmbed"
+            class="cal-stage"
+            aria-label="Cal.com booking calendar"
+            style="width:100%;min-height:640px"></div>
+        </div>
+
+        <aside class="callback">
+          <h3 class="callback-title">Prefer we call you?</h3>
+          <p class="callback-sub">Leave your number and a preferred location. We'll reach out within one business day to find a time. <span class="cue-light">No medical details here, please - we'll take those in person.</span></p>
+
+          <!-- Netlify Forms: works on Netlify deploy with zero backend -->
+          <form class="cb-form" name="callback" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+            <input type="hidden" name="form-name" value="callback" />
+            <p class="hp" aria-hidden="true"><label>Don't fill this out: <input name="bot-field" /></label></p>
+
+            <div class="field">
+              <label for="cb-name">Your name</label>
+              <input type="text" id="cb-name" name="name" required autocomplete="name" placeholder="First and last name" />
+            </div>
+            <div class="field">
+              <label for="cb-phone">Phone number</label>
+              <input type="tel" id="cb-phone" name="phone" required autocomplete="tel" placeholder="(516) 000-0000" />
+            </div>
+            <div class="field">
+              <label for="cb-loc">Preferred location</label>
+              <select id="cb-loc" name="preferred_location">
+                <option value="hillside">Hillside Ave - Floral Park</option>
+                <option value="carle">Carle Place</option>
+                <option value="either">Either works</option>
+              </select>
+            </div>
+            <label class="consent">
+              <input type="checkbox" name="sms_consent" value="yes" required />
+              <span>
+                Yes, I agree to receive SMS reminders and calls about my appointment.
+                Message rates may apply. Reply STOP to opt out. <span class="cue-light">(Consent record for A2P 10DLC.)</span>
+              </span>
+            </label>
+            <button type="submit" class="btn btn-copper-solid cb-submit">Request a callback</button>
+          </form>
+
+          <p class="callback-alt">Or call us now: <a href="tel:+15167896322">(516) 789-6322</a></p>
+        </aside>
+      </div>
+    </div>
+  </section>

@@ -1,0 +1,65 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PostCard from '../../components/PostCard.astro';
+import { getCollection } from 'astro:content';
+import '../../styles/blog.css';
+
+const posts = (await getCollection('blog', ({ data }) => !data.draft))
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+---
+<BaseLayout
+  title="Blog - FAAST Physical Therapy | Floral Park & Carle Place, NY"
+  description="Practical physical therapy guidance and clinic news from FAAST PT."
+  ogTitle="FAAST Physical Therapy - Blog">
+  <section class="blog-index">
+    <div class="blog-index__head">
+      <h1 class="blog-index__title">The FAAST blog</h1>
+      <p class="blog-index__lede">Recovery guidance, what to expect, and clinic updates. New posts about every two weeks.</p>
+    </div>
+
+    {posts.length === 0 ? (
+      <p class="blog-empty">First post coming soon.</p>
+    ) : (
+      <Fragment>
+        <div class="blog-filter" role="group" aria-label="Filter posts by type">
+          <button class="blog-filter__btn" data-filter="all" aria-pressed="true">All</button>
+          <button class="blog-filter__btn" data-filter="article" aria-pressed="false">Articles</button>
+          <button class="blog-filter__btn" data-filter="news" aria-pressed="false">Clinic news</button>
+        </div>
+
+        <div class="post-grid">
+          {posts.map(p => (
+            <PostCard
+              title={p.data.title}
+              pubDate={p.data.pubDate}
+              excerpt={p.data.excerpt}
+              category={p.data.category}
+              tags={p.data.tags}
+              slug={p.id}
+            />
+          ))}
+        </div>
+        <p class="blog-empty" data-empty hidden>No posts in this category yet.</p>
+      </Fragment>
+    )}
+  </section>
+
+  <script>
+    const buttons = document.querySelectorAll<HTMLButtonElement>('.blog-filter__btn');
+    const cards = document.querySelectorAll<HTMLElement>('.post-card');
+    const empty = document.querySelector<HTMLElement>('[data-empty]');
+    buttons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const filter = btn.dataset.filter;
+        buttons.forEach(b => b.setAttribute('aria-pressed', String(b === btn)));
+        let visible = 0;
+        cards.forEach(card => {
+          const show = filter === 'all' || card.dataset.category === filter;
+          card.hidden = !show;
+          if (show) visible++;
+        });
+        if (empty) empty.hidden = visible !== 0;
+      });
+    });
+  </script>
+</BaseLayout>

@@ -1,0 +1,60 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import '../styles/blog.css';
+
+interface Props {
+  title: string;
+  pubDate: Date;
+  author: string;
+  excerpt: string;
+  image?: { url: string; alt: string };
+  tags?: string[];
+  url: string;
+  minutes: number;
+}
+const { title, pubDate, author, excerpt, image, tags = [], url, minutes } = Astro.props;
+const dateStr = pubDate.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'BlogPosting',
+  headline: title,
+  description: excerpt,
+  datePublished: pubDate.toISOString(),
+  author: { '@type': 'Person', name: author },
+  mainEntityOfPage: url,
+  ...(image ? { image: image.url } : {}),
+};
+---
+<BaseLayout title={`${title} - FAAST Physical Therapy`} description={excerpt} ogTitle={title}>
+  <Fragment slot="schema">
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLd).replace(/</g, '\\u003c')} />
+  </Fragment>
+
+  <article class="post">
+    <span class="post__chip">FAAST blog</span>
+    <h1 class="post__title">{title}</h1>
+    <div class="post__byline">
+      <span>{author}</span>
+      <time datetime={pubDate.toISOString()}>{dateStr}</time>
+      <span>{minutes} min read</span>
+    </div>
+
+    {image && <img class="post__hero" src={image.url} alt={image.alt} loading="lazy" />}
+
+    <div class="post__body">
+      <slot />
+    </div>
+
+    {tags.length > 0 && (
+      <ul class="post__tags">{tags.map(t => <li>{t}</li>)}</ul>
+    )}
+
+    <div class="post__cta">
+      <p>Ready to get moving again?</p>
+      <a class="btn btn-copper-solid" href="/#book">Book an appointment</a>
+    </div>
+
+    <a class="post__back" href="/blog">&larr; Back to all posts</a>
+  </article>
+</BaseLayout>

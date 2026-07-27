@@ -1,0 +1,340 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PainMap from '../components/PainMap.astro';
+import LocationsSection from '../components/LocationsSection.astro';
+import FaqSection from '../components/FaqSection.astro';
+import BookingSection from '../components/BookingSection.astro';
+---
+<BaseLayout
+  title="FAAST Physical Therapy - Get moving again | Floral Park & Carle Place, NY"
+  description="One-on-one physical therapy with Dr. Asim Iftikhar in Floral Park and Carle Place, NY. Most insurance accepted, plus No-Fault and Workers' Comp. No referral needed to start.">
+
+  <Fragment slot="schema">
+  <!-- JSON-LD: LocalBusiness / PhysicalTherapy (Hillside only) + FAQPage -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "PhysicalTherapy",
+    "name": "FAAST Physical Therapy",
+    "description": "One-on-one physical therapy with Dr. Asim Iftikhar. Most insurance accepted, plus No-Fault and Workers' Comp. No referral needed to start.",
+    "url": "https://faastpt.example",
+    "telephone": "+15167896322",
+    "priceRange": "$$",
+    "image": "assets/og-image.jpg",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Hillside Avenue",
+      "addressLocality": "Floral Park",
+      "addressRegion": "NY",
+      "postalCode": "11001",
+      "addressCountry": "US"
+    },
+    "geo": { "@type": "GeoCoordinates", "latitude": "40.7240", "longitude": "-73.7096" },
+    "openingHoursSpecification": [
+      { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Tuesday","Thursday","Saturday"], "opens": "07:00", "closes": "17:00" }
+    ],
+    "aggregateRating": { "@type": "AggregateRating", "ratingValue": "5.0", "reviewCount": "3" }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      { "@type": "Question", "name": "Do I need a referral to start physical therapy?", "acceptedAnswer": { "@type": "Answer", "text": "No. You can begin treatment without a referral. Some insurance plans require one for coverage, so we verify yours before your first visit." } },
+      { "@type": "Question", "name": "How long is each appointment?", "acceptedAnswer": { "@type": "Answer", "text": "Plan on 45 to 60 minutes, one-on-one with your therapist. You won't be passed between aides." } },
+      { "@type": "Question", "name": "What should I wear to my appointment?", "acceptedAnswer": { "@type": "Answer", "text": "Comfortable, loose-fitting clothes you can move in. Shorts for leg or knee issues, a tank top for shoulder or neck work." } },
+      { "@type": "Question", "name": "What insurance do you accept?", "acceptedAnswer": { "@type": "Answer", "text": "Most major commercial plans, plus Medicare, No-Fault, and Workers' Comp. Call us at (516) 789-6322 and we'll verify your specific plan." } }
+    ]
+  }
+  </script>
+  </Fragment>
+
+  <span id="top"></span>
+
+  <!-- ===================== HERO ===================== -->
+  <section class="hero" aria-labelledby="hero-title">
+    <div class="hero-inner">
+      <p class="eyebrow eyebrow-light">FAAST Physical Therapy · Floral Park &amp; Carle Place</p>
+      <h1 class="hero-h1" id="hero-title">
+        Get moving again - <span class="mark">FAAST</span>.
+      </h1>
+      <p class="hero-sub">
+        One-on-one physical therapy with Dr. Asim Iftikhar. No referral needed to start,
+        and we verify your insurance <em>before</em> your first visit - most plans accepted,
+        plus No-Fault and Workers' Comp.
+      </p>
+
+      <!-- Booking bar (Fresha pattern): location selector + one action -->
+      <form class="booking-bar" id="heroBookingBar" onsubmit="return false;">
+        <div class="loc-select" role="radiogroup" aria-label="Choose a location to book">
+          <button type="button" class="loc-option is-active" data-loc="hillside" role="radio" aria-checked="true">
+            Hillside Ave <span class="loc-sub">Floral Park</span>
+          </button>
+          <button type="button" class="loc-option" data-loc="carle" role="radio" aria-checked="false">
+            Carle Place <span class="loc-sub">Mon · Wed · Fri</span>
+          </button>
+        </div>
+        <button type="button" class="btn btn-copper-solid book-btn" id="heroBookBtn">
+          Book an appointment
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M5 12h12.2l-4.6-4.6L14 6l7 6-7 6-1.4-1.4 4.6-4.6H5z"/></svg>
+        </button>
+      </form>
+
+      <p class="hero-phone">
+        Prefer to talk? Call
+        <a href="tel:+15167896322">(516)&nbsp;789-6322</a>
+      </p>
+
+      <ul class="hero-trust">
+        <li><span aria-hidden="true">★★★★★</span> 5.0 on Google</li>
+        <li>Every session with your therapist</li>
+        <li>Open 6 days a week</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ===================== STATS ===================== -->
+  <section class="stats" aria-label="At a glance">
+    <div class="stats-inner">
+      <div class="stat">
+        <p class="stat-num">Open 6 days a week</p>
+        <p class="stat-label">Early and Saturday appointments available.</p>
+      </div>
+      <div class="stat">
+        <p class="stat-num">2 locations</p>
+        <p class="stat-label">Floral Park and Carle Place - close to home or work.</p>
+      </div>
+      <div class="stat">
+        <p class="stat-num">5.0 ★ on Google</p>
+        <p class="stat-label">Every session, one-on-one with your therapist.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== INSURANCE ===================== -->
+  <section class="section" id="insurance" aria-labelledby="insurance-title">
+    <div class="container">
+      <header class="section-head">
+        <p class="section-eyebrow">Before you arrive</p>
+        <h2 class="section-title" id="insurance-title">Insurance verified first - no billing surprises.</h2>
+        <p class="section-intro">
+          Two different questions, answered in two places: which plan covers your care,
+          and what happens if you were hurt in an accident or at work.
+        </p>
+      </header>
+
+      <div class="insurance">
+        <!-- Group 1: payers -->
+        <div class="ins-col">
+          <h3 class="ins-col-title">Insurance we accept</h3>
+          <ul class="ins-chips" aria-label="Insurance plans">
+            <li class="chip">Medicare</li>
+            <li class="chip">Aetna</li>
+            <li class="chip">UnitedHealthcare</li>
+            <li class="chip">Blue Cross Blue Shield</li>
+            <li class="chip">Cigna</li>
+            <li class="chip chip-confirm">Your plan - confirm</li>
+          </ul>
+          <p class="ins-note">
+            Don't see your plan? Call anyway - we verify your benefits before your
+            first appointment so you know exactly what you'll pay.
+          </p>
+        </div>
+
+        <!-- Group 2: claim pathways -->
+        <div class="ins-col">
+          <h3 class="ins-col-title">Hurt in an accident or at work?</h3>
+          <div class="claim-cards">
+            <article class="claim-card">
+              <h4 class="claim-title">
+                <span class="claim-tag">No-Fault</span>
+                In a car accident?
+              </h4>
+              <p>
+                New York No-Fault covers your physical therapy regardless of who was at
+                fault. Bring your claim number - we bill the auto carrier directly.
+              </p>
+            </article>
+            <article class="claim-card">
+              <h4 class="claim-title">
+                <span class="claim-tag">Workers' Comp</span>
+                Hurt on the job?
+              </h4>
+              <p>
+                Report the injury to your employer, then call us. We handle the
+                authorizations and paperwork so you can focus on recovering.
+              </p>
+            </article>
+          </div>
+          <p class="ins-note ins-note-confirm">
+            <span class="cue">Confirm with Dr. Iftikhar:</span> that the practice
+            directly bills No-Fault and manages Workers' Comp authorizations before launch.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== FIRST-VISIT CHECKLIST ===================== -->
+  <section class="section section-tint" id="first-visit" aria-labelledby="firstvisit-title">
+    <div class="container">
+      <header class="section-head">
+        <p class="section-eyebrow">Your first visit, step by step</p>
+        <h2 class="section-title" id="firstvisit-title">What happens, and what you can count on.</h2>
+      </header>
+
+      <ol class="checklist">
+        <li class="check-row">
+          <span class="check-mark" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+          </span>
+          <p class="check-text">Your insurance is verified <strong>before</strong> you arrive - no surprises at the front desk.</p>
+        </li>
+        <li class="check-row">
+          <span class="check-mark" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+          </span>
+          <p class="check-text">You're evaluated by <strong>Dr. Iftikhar himself</strong> - one-on-one, not handed to an aide.</p>
+        </li>
+        <li class="check-row">
+          <span class="check-mark" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+          </span>
+          <p class="check-text">You leave with a <strong>measurable plan</strong> and clear milestones, not a guess.</p>
+        </li>
+        <li class="check-row">
+          <span class="check-mark" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+          </span>
+          <p class="check-text">You'll get a <strong>text reminder</strong> before every appointment so nothing slips.</p>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <PainMap />
+
+  <!-- ===================== PROVIDER ===================== -->
+  <section class="section section-tint" id="provider" aria-labelledby="provider-title">
+    <div class="container">
+      <div class="provider">
+        <div class="provider-photo photo-slot" data-slot="Provider photo of Dr. Asim Iftikhar">
+          <span>Dr. Iftikhar<br />photo</span>
+        </div>
+        <div class="provider-body">
+          <p class="section-eyebrow">Your therapist</p>
+          <h2 class="section-title" id="provider-title">Dr. Asim Iftikhar, DPT</h2>
+          <p class="provider-cred">Doctor of Physical Therapy · Practice owner <span class="cue">(confirm credential)</span></p>
+          <p>
+            This is a solo practice, and that's the point. At a six-clinic chain you get
+            whoever's on shift. Here, every session is with Dr. Iftikhar - the same hands,
+            the same plan, the same person tracking your progress from first visit to last.
+          </p>
+          <p>
+            Whether you're recovering from surgery, a car accident, a work injury, or the
+            back pain that's been building for months, you'll get a one-on-one evaluation
+            and a plan built around how <em>you</em> move and what <em>you</em> need to get
+            back to.
+          </p>
+          <a class="btn btn-copper" href="#book">Book with Dr. Iftikhar</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== TEAM ===================== -->
+  <section class="section" id="team" aria-labelledby="team-title">
+    <div class="container">
+      <header class="section-head">
+        <p class="section-eyebrow">The team</p>
+        <h2 class="section-title" id="team-title">The people you'll actually see.</h2>
+        <p class="section-intro">Real photos of the real staff - captured at the practice, not stock.</p>
+      </header>
+
+      <div class="team-grid">
+        <article class="staff-card">
+          <div class="staff-photo photo-slot" data-slot="Staff photo"><span>Photo</span></div>
+          <h3 class="staff-name slot-text">Staff name</h3>
+          <p class="staff-role slot-text">Role / title</p>
+        </article>
+        <article class="staff-card">
+          <div class="staff-photo photo-slot" data-slot="Staff photo"><span>Photo</span></div>
+          <h3 class="staff-name slot-text">Staff name</h3>
+          <p class="staff-role slot-text">Role / title</p>
+        </article>
+        <article class="staff-card">
+          <div class="staff-photo photo-slot" data-slot="Staff photo"><span>Photo</span></div>
+          <h3 class="staff-name slot-text">Staff name</h3>
+          <p class="staff-role slot-text">Role / title</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== FACILITY VIDEO ===================== -->
+  <section class="section section-tint" id="facility" aria-labelledby="facility-title">
+    <div class="container">
+      <header class="section-head">
+        <p class="section-eyebrow">Inside the practice</p>
+        <h2 class="section-title" id="facility-title">See where you'll be treated.</h2>
+        <p class="section-intro">
+          A short walkthrough of the actual space - the tables, the equipment, the waiting
+          area. The one thing stock photography can't fake.
+        </p>
+      </header>
+
+      <div class="video-slot" data-slot="Facility walkthrough video - 20-40s horizontal phone clip of tables, equipment, and waiting area. Encode h264 CRF26 under 600KB, muted autoplay loop.">
+        <span class="vs-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><path fill="currentColor" d="M8 5v14l11-7z"/></svg>
+        </span>
+        <span class="vs-text">Facility walkthrough video</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== REVIEWS ===================== -->
+  <section class="section" id="reviews" aria-labelledby="reviews-title">
+    <div class="container">
+      <header class="section-head">
+        <p class="section-eyebrow">5.0 stars on Google</p>
+        <h2 class="section-title" id="reviews-title">What patients say.</h2>
+        <p class="agg"><span class="agg-score">5.0</span> <span aria-hidden="true" class="agg-stars">★★★★★</span> <span class="agg-count">based on Google reviews</span></p>
+      </header>
+
+      <div class="review-grid">
+        <article class="review-card">
+          <p class="stars" aria-label="5 out of 5 stars">★★★★★</p>
+          <blockquote class="review-text slot-text">
+            Real Google review text to be added here - see the Google Business Profile listing.
+          </blockquote>
+          <p class="review-name">- <span class="slot-text">Reviewer first name</span></p>
+        </article>
+        <article class="review-card">
+          <p class="stars" aria-label="5 out of 5 stars">★★★★★</p>
+          <blockquote class="review-text slot-text">
+            Real Google review text to be added here - see the Google Business Profile listing.
+          </blockquote>
+          <p class="review-name">- <span class="slot-text">Reviewer first name</span></p>
+        </article>
+        <article class="review-card">
+          <p class="stars" aria-label="5 out of 5 stars">★★★★★</p>
+          <blockquote class="review-text slot-text">
+            Real Google review text to be added here - see the Google Business Profile listing.
+          </blockquote>
+          <p class="review-name">- <span class="slot-text">Reviewer first name</span></p>
+        </article>
+      </div>
+      <p class="reviews-note">
+        Reviews are pulled verbatim from Google. First names only are shown to protect privacy.
+      </p>
+    </div>
+  </section>
+
+  <LocationsSection />
+
+  <FaqSection />
+
+  <BookingSection />
+
+</BaseLayout>

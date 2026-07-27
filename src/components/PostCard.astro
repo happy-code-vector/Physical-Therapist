@@ -1,0 +1,23 @@
+---
+interface Props {
+  title: string;
+  pubDate: Date;
+  excerpt: string;
+  category: 'article' | 'news';
+  tags?: string[];
+  slug: string;
+}
+const { title, pubDate, excerpt, category, tags = [], slug } = Astro.props;
+const dateStr = pubDate.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+---
+<article class="post-card" data-category={category}>
+  <a class="post-card__link" href={`/blog/${slug}/`}>
+    <span class="post-card__chip">{category === 'article' ? 'Article' : 'Clinic news'}</span>
+    <h3 class="post-card__title">{title}</h3>
+    <time class="post-card__date" datetime={pubDate.toISOString()}>{dateStr}</time>
+    <p class="post-card__excerpt">{excerpt}</p>
+    {tags.length > 0 && (
+      <ul class="post-card__tags">{tags.map(t => <li>{t}</li>)}</ul>
+    )}
+  </a>
+</article>
