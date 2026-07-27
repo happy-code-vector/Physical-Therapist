@@ -430,7 +430,9 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 .review-text { margin: 0 0 16px; font-size: 1.0625rem; line-height: 1.55; }
 .review-text::before { content: '"'; font-family: var(--font-display); font-size: 1.4em; color: var(--copper); line-height: 0; vertical-align: -0.1em; margin-right: 2px; }
 .review-name { font-weight: 600; color: var(--forest); margin: 0; }
-.reviews-note { text-align: center; color: var(--sage-deep); margin: 24px 0 0; font-size: .92rem; }
+.review-card--more { display: flex; flex-direction: column; justify-content: center; }
+.review-more-text { margin: 0 0 18px; font-size: 1.0625rem; line-height: 1.55; color: var(--sage-deep); }
+.review-more-btn { align-self: flex-start; }
 
 /* ============================================================
    LOCATIONS

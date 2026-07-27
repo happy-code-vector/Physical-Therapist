@@ -31,7 +31,7 @@ import BookingSection from '../components/BookingSection.astro';
     },
     "geo": { "@type": "GeoCoordinates", "latitude": "40.7240", "longitude": "-73.7096" },
     "openingHoursSpecification": [
-      { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Tuesday","Thursday","Saturday"], "opens": "07:00", "closes": "17:00" }
+      { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Tuesday","Thursday"], "opens": "09:00", "closes": "18:00" }
     ],
     "aggregateRating": { "@type": "AggregateRating", "ratingValue": "5.0", "reviewCount": "3" }
   }
@@ -70,10 +70,10 @@ import BookingSection from '../components/BookingSection.astro';
         <form class="booking-bar" id="heroBookingBar" onsubmit="return false;">
           <div class="loc-select" role="radiogroup" aria-label="Choose a location to book">
             <button type="button" class="loc-option is-active" data-loc="hillside" role="radio" aria-checked="true">
-              Hillside Ave <span class="loc-sub">Floral Park</span>
+              Hillside Ave <span class="loc-sub">Tue · Thu</span>
             </button>
             <button type="button" class="loc-option" data-loc="carle" role="radio" aria-checked="false">
-              Carle Place <span class="loc-sub">Mon · Wed · Fri</span>
+              Carle Place <span class="loc-sub">Mon · Wed · Fri · Sat</span>
             </button>
           </div>
           <button type="button" class="btn btn-copper-solid book-btn" id="heroBookBtn">
@@ -111,7 +111,7 @@ import BookingSection from '../components/BookingSection.astro';
     <div class="stats-inner">
       <div class="stat">
         <p class="stat-num">Open 6 days a week</p>
-        <p class="stat-label">Early and Saturday appointments available.</p>
+        <p class="stat-label">Evening and Saturday appointments available.</p>
       </div>
       <div class="stat">
         <p class="stat-num">2 locations</p>
@@ -288,29 +288,24 @@ import BookingSection from '../components/BookingSection.astro';
       <div class="review-grid">
         <article class="review-card">
           <p class="stars" aria-label="5 out of 5 stars">★★★★★</p>
-          <blockquote class="review-text slot-text">
-            Real Google review text to be added here - see the Google Business Profile listing.
+          <blockquote class="review-text">
+            The team at FAAST Physical Therapy has been treating my father for over 1 year now and he finds it very helpful for pain in his legs. I also recently sprained my ankle and they have helped in getting the swelling and pain down. They advised me on the trigger points to work on at home, which I had no idea about before I went to them.
           </blockquote>
-          <p class="review-name">- <span class="slot-text">Reviewer first name</span></p>
+          <p class="review-name">- Naveen</p>
         </article>
         <article class="review-card">
           <p class="stars" aria-label="5 out of 5 stars">★★★★★</p>
-          <blockquote class="review-text slot-text">
-            Real Google review text to be added here - see the Google Business Profile listing.
+          <blockquote class="review-text">
+            One of the BEST Therapy doctors and staffs. Had a real back pain and they just fixed it 90% I would say. Recommended 100%
           </blockquote>
-          <p class="review-name">- <span class="slot-text">Reviewer first name</span></p>
+          <p class="review-name">- D One</p>
         </article>
-        <article class="review-card">
+        <article class="review-card review-card--more">
           <p class="stars" aria-label="5 out of 5 stars">★★★★★</p>
-          <blockquote class="review-text slot-text">
-            Real Google review text to be added here - see the Google Business Profile listing.
-          </blockquote>
-          <p class="review-name">- <span class="slot-text">Reviewer first name</span></p>
+          <p class="review-more-text">These are just a couple - read every review on our Google listing.</p>
+          <a class="btn btn-copper-solid review-more-btn" href="https://www.google.com/maps/place/FAAST+Physical+Therapy/@40.737474,-73.7113189,17z/data=!4m8!3m7!1s0x89c263003012487f:0xa109b8778c3c518a!8m2!3d40.73747!4d-73.708744!9m1!1b1!16s%2Fg%2F11mcbyt12n" target="_blank" rel="noopener noreferrer">See all Google reviews</a>
         </article>
       </div>
-      <p class="reviews-note">
-        Reviews are pulled verbatim from Google. First names only are shown to protect privacy.
-      </p>
     </div>
   </section>
 
