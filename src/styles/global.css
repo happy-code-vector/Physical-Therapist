@@ -437,8 +437,8 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 /* ============================================================
    LOCATIONS
    ============================================================ */
-.loc-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; align-items: start; }
-.loc-card { background: var(--bone); border: 1px solid var(--cream-3); border-radius: var(--radius); padding: 30px; box-shadow: var(--shadow-card); }
+.loc-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; align-items: stretch; }
+.loc-card { display: flex; flex-direction: column; background: var(--bone); border: 1px solid var(--cream-3); border-radius: var(--radius); padding: 30px; box-shadow: var(--shadow-card); }
 .loc-card--pending { border-style: dashed; border-color: var(--sage); }
 .loc-head { margin-bottom: 16px; }
 .loc-name { font-size: 1.6rem; color: var(--forest); margin: 0 0 2px; }
@@ -450,7 +450,7 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 .loc-hours th, .loc-hours td { text-align: left; padding: 7px 0; border-bottom: 1px solid var(--cream-3); }
 .loc-hours th { font-weight: 600; color: var(--ink); width: 45%; }
 .loc-hours td { color: var(--sage-deep); }
-.loc-meta { display: grid; gap: 8px; margin: 0 0 20px; font-size: .95rem; }
+.loc-meta { display: grid; gap: 8px; margin: auto 0 20px; font-size: .95rem; }
 .loc-meta li { color: var(--sage-deep); }
 .loc-meta strong { color: var(--ink); margin-right: 6px; }
 .loc-actions { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
