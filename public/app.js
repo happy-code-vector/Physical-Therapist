@@ -79,11 +79,12 @@
   });
 
   /* ---------- Location sync (hero bar ↔ book toggle ↔ Cal.com ↔ callback) ---------- */
-  // CAL_USERNAME must be replaced with the practice's Cal.com username at deploy.
+  // Real Cal.com booking links (username "drasim", per-location event slugs).
   // Links are "username/event-slug" (no full URL) - Cal's embed.js builds the iframe.
+  // Note the slugs differ by location: Carle Place uses "evaluation", Hillside uses "eval".
   var CAL = {
-    hillside: "CAL_USERNAME/hillside",
-    carle:    "CAL_USERNAME/carle-place"
+    hillside: "drasim/new-patient-eval-hillside",
+    carle:    "drasim/new-patient-evaluation-carle-place"
   };
   var CAL_TITLES = {
     hillside: "Book an appointment at Hillside Avenue (Floral Park)",

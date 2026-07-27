@@ -55,42 +55,54 @@ import BookingSection from '../components/BookingSection.astro';
   <!-- ===================== HERO ===================== -->
   <section class="hero" aria-labelledby="hero-title">
     <div class="hero-inner">
-      <p class="eyebrow eyebrow-light">FAAST Physical Therapy · Floral Park &amp; Carle Place</p>
-      <h1 class="hero-h1" id="hero-title">
-        Get moving again - <span class="mark">FAAST</span>.
-      </h1>
-      <p class="hero-sub">
-        One-on-one physical therapy with Dr. Asim Iftikhar. No referral needed to start,
-        and we verify your insurance <em>before</em> your first visit - most plans accepted,
-        plus No-Fault and Workers' Comp.
-      </p>
+      <div class="hero-copy">
+        <p class="eyebrow eyebrow-light">FAAST Physical Therapy · Floral Park &amp; Carle Place</p>
+        <h1 class="hero-h1" id="hero-title">
+          Get moving again - <span class="mark">FAAST</span>.
+        </h1>
+        <p class="hero-sub">
+          One-on-one physical therapy with Dr. Asim Iftikhar. No referral needed to start,
+          and we verify your insurance <em>before</em> your first visit - most plans accepted,
+          plus No-Fault and Workers' Comp.
+        </p>
 
-      <!-- Booking bar (Fresha pattern): location selector + one action -->
-      <form class="booking-bar" id="heroBookingBar" onsubmit="return false;">
-        <div class="loc-select" role="radiogroup" aria-label="Choose a location to book">
-          <button type="button" class="loc-option is-active" data-loc="hillside" role="radio" aria-checked="true">
-            Hillside Ave <span class="loc-sub">Floral Park</span>
+        <!-- Booking bar (Fresha pattern): location selector + one action -->
+        <form class="booking-bar" id="heroBookingBar" onsubmit="return false;">
+          <div class="loc-select" role="radiogroup" aria-label="Choose a location to book">
+            <button type="button" class="loc-option is-active" data-loc="hillside" role="radio" aria-checked="true">
+              Hillside Ave <span class="loc-sub">Floral Park</span>
+            </button>
+            <button type="button" class="loc-option" data-loc="carle" role="radio" aria-checked="false">
+              Carle Place <span class="loc-sub">Mon · Wed · Fri</span>
+            </button>
+          </div>
+          <button type="button" class="btn btn-copper-solid book-btn" id="heroBookBtn">
+            Book an appointment
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M5 12h12.2l-4.6-4.6L14 6l7 6-7 6-1.4-1.4 4.6-4.6H5z"/></svg>
           </button>
-          <button type="button" class="loc-option" data-loc="carle" role="radio" aria-checked="false">
-            Carle Place <span class="loc-sub">Mon · Wed · Fri</span>
-          </button>
+        </form>
+
+        <p class="hero-phone">
+          Prefer to talk? Call
+          <a href="tel:+15167896322">(516)&nbsp;789-6322</a>
+        </p>
+
+        <ul class="hero-trust">
+          <li><span aria-hidden="true">★★★★★</span> 5.0 on Google</li>
+          <li>Every session with your therapist</li>
+          <li>Open 6 days a week</li>
+        </ul>
+      </div>
+
+      <div class="hero-media">
+        <div class="hero-carousel" role="img" aria-label="Photos of one-on-one physical therapy sessions.">
+          <img class="hero-slide" src="/images/pt-hands-on.jpg" alt="" width="1280" height="853" loading="eager" fetchpriority="high" />
+          <img class="hero-slide" src="/images/pt-strength.jpg" alt="" width="1280" height="675" loading="lazy" />
+          <img class="hero-slide" src="/images/pt-arm-exercises.jpg" alt="" width="1280" height="853" loading="lazy" />
+          <img class="hero-slide" src="/images/pt-mobility.jpg" alt="" width="1280" height="853" loading="lazy" />
+          <img class="hero-slide" src="/images/pt-guided-care.jpg" alt="" width="1280" height="470" loading="lazy" />
         </div>
-        <button type="button" class="btn btn-copper-solid book-btn" id="heroBookBtn">
-          Book an appointment
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M5 12h12.2l-4.6-4.6L14 6l7 6-7 6-1.4-1.4 4.6-4.6H5z"/></svg>
-        </button>
-      </form>
-
-      <p class="hero-phone">
-        Prefer to talk? Call
-        <a href="tel:+15167896322">(516)&nbsp;789-6322</a>
-      </p>
-
-      <ul class="hero-trust">
-        <li><span aria-hidden="true">★★★★★</span> 5.0 on Google</li>
-        <li>Every session with your therapist</li>
-        <li>Open 6 days a week</li>
-      </ul>
+      </div>
     </div>
   </section>
 
@@ -219,8 +231,8 @@ import BookingSection from '../components/BookingSection.astro';
   <section class="section section-tint" id="provider" aria-labelledby="provider-title">
     <div class="container">
       <div class="provider">
-        <div class="provider-photo photo-slot" data-slot="Provider photo of Dr. Asim Iftikhar">
-          <span>Dr. Iftikhar<br />photo</span>
+        <div class="provider-photo">
+          <img src="/images/dr-iftikhar.jpg" alt="Dr. Asim Iftikhar, Doctor of Physical Therapy and practice owner" width="619" height="1100" loading="lazy" />
         </div>
         <div class="provider-body">
           <p class="section-eyebrow">Your therapist</p>
@@ -239,35 +251,6 @@ import BookingSection from '../components/BookingSection.astro';
           </p>
           <a class="btn btn-copper" href="#book">Book with Dr. Iftikhar</a>
         </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===================== TEAM ===================== -->
-  <section class="section" id="team" aria-labelledby="team-title">
-    <div class="container">
-      <header class="section-head">
-        <p class="section-eyebrow">The team</p>
-        <h2 class="section-title" id="team-title">The people you'll actually see.</h2>
-        <p class="section-intro">Real photos of the real staff - captured at the practice, not stock.</p>
-      </header>
-
-      <div class="team-grid">
-        <article class="staff-card">
-          <div class="staff-photo photo-slot" data-slot="Staff photo"><span>Photo</span></div>
-          <h3 class="staff-name slot-text">Staff name</h3>
-          <p class="staff-role slot-text">Role / title</p>
-        </article>
-        <article class="staff-card">
-          <div class="staff-photo photo-slot" data-slot="Staff photo"><span>Photo</span></div>
-          <h3 class="staff-name slot-text">Staff name</h3>
-          <p class="staff-role slot-text">Role / title</p>
-        </article>
-        <article class="staff-card">
-          <div class="staff-photo photo-slot" data-slot="Staff photo"><span>Photo</span></div>
-          <h3 class="staff-name slot-text">Staff name</h3>
-          <p class="staff-role slot-text">Role / title</p>
-        </article>
       </div>
     </div>
   </section>
