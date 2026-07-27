@@ -392,7 +392,7 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
    ============================================================ */
 .provider { display: grid; grid-template-columns: 0.85fr 1.15fr; gap: 48px; align-items: center; }
 .provider-photo { aspect-ratio: 4 / 5; border-radius: var(--radius); max-width: 360px; overflow: hidden; box-shadow: var(--shadow-card); }
-.provider-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.provider-photo img { width: 100%; height: 100%; object-fit: cover; object-position: center top; display: block; }
 .provider-cred { color: var(--sage-deep); font-weight: 500; margin: 4px 0 18px; }
 .provider-body p { font-size: 1.0625rem; }
 .provider-body .btn { margin-top: 12px; }
