@@ -5,9 +5,9 @@
   color: var(--cream);
   padding: clamp(56px, 9vw, 104px) 0;
 }
-.svc-hero__inner { max-width: var(--wrap-narrow); margin: 0 auto; padding: 0 24px; }
+.svc-hero__inner { max-width: var(--wrap); margin: 0 auto; padding: 0 24px; }
 .svc-hero__eyebrow { color: var(--copper-bright); font-family: var(--font-body); font-weight: 600; letter-spacing: .08em; text-transform: uppercase; font-size: .8rem; margin: 0 0 16px; }
-.svc-hero__title { font-family: var(--font-display); font-weight: 600; font-size: var(--fs-h1); line-height: 1.04; margin: 0 0 20px; }
+.svc-hero__title { font-family: var(--font-display); font-weight: 600; font-size: var(--fs-h1); line-height: 1.04; letter-spacing: -.02em; margin: 0 0 20px; }
 .svc-hero__title .mark { color: var(--copper-bright); font-style: italic; }
 .svc-hero__sub { font-size: var(--fs-lg); line-height: 1.55; color: var(--sage); max-width: 62ch; margin: 0 0 30px; }
 .svc-hero__cta { display: flex; gap: 14px; flex-wrap: wrap; }
