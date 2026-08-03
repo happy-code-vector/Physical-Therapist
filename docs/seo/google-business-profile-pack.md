@@ -204,7 +204,6 @@ success theme). Fresh posts signal an active business.
 
 ## Still useful once the listings are live
 
-- The **Carle Place Maps pin URL** so I can add Carle's own `geo` to its
-  structured-data entity (the `maps.app.goo.gl/...` short link hides the coords).
+- ✅ Carle Place Maps pin received → Carle `geo` (40.7510426, -73.6061651) added to its structured-data entity. Carle still has **no aggregateRating** — the 5.0/6 reviews belong to the listing that holds them (currently Floral Park's); add Carle's own rating only once its listing accrues its own reviews.
 - Photos for each listing (see §7) and a steady review cadence
   (see "After you publish").
