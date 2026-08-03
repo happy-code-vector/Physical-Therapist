@@ -1,0 +1,7 @@
+# https://faastpt.com
+# The whole site is public and meant to be indexed.
+User-agent: *
+Allow: /
+
+# Points crawlers at the Astro-generated sitemap index.
+Sitemap: https://faastpt.com/sitemap-index.xml

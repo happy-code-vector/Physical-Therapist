@@ -15,6 +15,10 @@ interface Props {
 const { title, pubDate, author, excerpt, image, tags = [], url, minutes } = Astro.props;
 const dateStr = pubDate.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
 
+// Absolute URLs for structured data + social cards (the collection passes relative paths).
+const SITE = Astro.site ?? new URL('https://faastpt.com');
+const absoluteURL = new URL(url, SITE).href;
+
 const jsonLd = {
   '@context': 'https://schema.org',
   '@type': 'BlogPosting',
@@ -22,11 +26,17 @@ const jsonLd = {
   description: excerpt,
   datePublished: pubDate.toISOString(),
   author: { '@type': 'Person', name: author },
-  mainEntityOfPage: url,
-  ...(image ? { image: image.url } : {}),
+  mainEntityOfPage: absoluteURL,
+  ...(image ? { image: new URL(image.url, SITE).href } : {}),
 };
 ---
-<BaseLayout title={`${title} - FAAST Physical Therapy`} description={excerpt} ogTitle={title}>
+<BaseLayout
+  title={`${title} - FAAST Physical Therapy`}
+  description={excerpt}
+  ogTitle={title}
+  ogType="article"
+  ogImage={image ? image.url : undefined}
+>
   <Fragment slot="schema">
     <script type="application/ld+json" set:html={JSON.stringify(jsonLd).replace(/</g, '\\u003c')} />
   </Fragment>

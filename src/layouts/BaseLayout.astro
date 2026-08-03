@@ -8,8 +8,26 @@ interface Props {
   description: string;
   ogTitle?: string;
   ogDescription?: string;
+  ogType?: 'website' | 'article';
+  /** Absolute path (e.g. "/images/og-default.jpg") or full URL; defaults to the brand OG image. */
+  ogImage?: string;
+  /** Override canonical URL; defaults to the current page URL. */
+  canonical?: string;
 }
-const { title, description, ogTitle = title, ogDescription = description } = Astro.props;
+const {
+  title,
+  description,
+  ogTitle = title,
+  ogDescription = description,
+  ogType = 'website',
+  ogImage = '/images/og-default.jpg',
+  canonical,
+} = Astro.props;
+
+// Absolute canonical + social-image URLs derived from the configured site.
+const SITE = Astro.site ?? new URL('https://faastpt.com');
+const canonicalURL = new URL(canonical ?? Astro.url.pathname, SITE).href;
+const ogImageURL = new URL(ogImage, SITE).href;
 ---
 <!DOCTYPE html>
 <html lang="en">
@@ -20,13 +38,27 @@ const { title, description, ogTitle = title, ogDescription = description } = Ast
   <meta name="description" content={description} />
   <meta name="theme-color" content="#1E3A2B" />
 
-  <!-- RSS feed discovery -->
+  <!-- Canonical + RSS -->
+  <link rel="canonical" href={canonicalURL} />
   <link rel="alternate" type="application/rss+xml" title="FAAST Physical Therapy — Blog" href="/rss.xml" />
 
   <!-- Open Graph -->
   <meta property="og:title" content={ogTitle} />
   <meta property="og:description" content={ogDescription} />
-  <meta property="og:type" content="website" />
+  <meta property="og:type" content={ogType} />
+  <meta property="og:url" content={canonicalURL} />
+  <meta property="og:site_name" content="FAAST Physical Therapy" />
+  <meta property="og:image" content={ogImageURL} />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="FAAST Physical Therapy - one-on-one physical therapy in Floral Park and Carle Place, NY" />
+  <meta property="og:locale" content="en_US" />
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content={ogTitle} />
+  <meta name="twitter:description" content={ogDescription} />
+  <meta name="twitter:image" content={ogImageURL} />
 
   <!-- Fonts: Fraunces (display, serif) + Albert Sans (body) -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
