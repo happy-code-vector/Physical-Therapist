@@ -1,0 +1,195 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import BookingSection from '../../components/BookingSection.astro';
+import { services, getService } from '../../data/services';
+import '../../styles/services.css';
+
+export function getStaticPaths() {
+  return services.map((service) => ({
+    params: { slug: service.slug },
+    props: { service },
+  }));
+}
+
+const { service } = Astro.props;
+const SITE = Astro.site ?? new URL('https://faastpt.com');
+const pageURL = new URL('/services/' + service.slug + '/', SITE).href;
+const eyebrow = service.category === 'pathway' ? 'Insurance & claims' : 'What we treat';
+const checkSvg = '<svg viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>';
+
+// ---- structured data ----
+const webPage: any = {
+  '@context': 'https://schema.org',
+  '@type': 'MedicalWebPage',
+  name: service.title,
+  description: service.metaDescription,
+  url: pageURL,
+  inLanguage: 'en',
+  isPartOf: { '@type': 'WebSite', name: 'FAAST Physical Therapy', url: 'https://faastpt.com' },
+};
+if (service.category === 'condition') {
+  webPage.about = {
+    '@type': 'MedicalCondition',
+    name: service.h1,
+    possibleTreatment: { '@type': 'MedicalTherapy', name: 'Physical therapy' },
+  };
+}
+
+const breadcrumb = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://faastpt.com/' },
+    { '@type': 'ListItem', position: 2, name: 'Services', item: 'https://faastpt.com/services/' },
+    { '@type': 'ListItem', position: 3, name: service.title, item: pageURL },
+  ],
+};
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: service.faqs.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+
+const related = service.related
+  .map((slug) => getService(slug))
+  .filter((s): s is NonNullable<typeof s> => Boolean(s));
+---
+<BaseLayout
+  title={`${service.title} | FAAST Physical Therapy`}
+  description={service.metaDescription}
+  ogTitle={`${service.title} - FAAST Physical Therapy`}>
+
+  <Fragment slot="schema">
+    <script type="application/ld+json" set:html={JSON.stringify(webPage)} />
+    <script type="application/ld+json" set:html={JSON.stringify(breadcrumb)} />
+    <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+  </Fragment>
+
+  <!-- HERO -->
+  <section class="svc-hero">
+    <div class="svc-hero__inner">
+      <p class="svc-hero__eyebrow">{eyebrow}</p>
+      <h1 class="svc-hero__title">{service.h1}</h1>
+      <p class="svc-hero__sub">{service.hero}</p>
+      <div class="svc-hero__cta">
+        <a class="btn btn-copper-solid" href="#book">Book an appointment</a>
+        <a class="btn btn-ghost" href="tel:+15167896322">(516) 789-6322</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHAT IT FEELS LIKE -->
+  <section class="section" aria-labelledby="svc-feel-title">
+    <div class="container">
+      <header class="section-head">
+        <p class="section-eyebrow">Recognize it?</p>
+        <h2 class="section-title" id="svc-feel-title">What it can feel like.</h2>
+        <p class="section-intro">You don't need a diagnosis to start. If any of this sounds like you, come in.</p>
+      </header>
+      <ul class="svc-symptoms">
+        {service.feelsLike.map((symptom) => (
+          <li><span class="ico" set:html={checkSvg} /><span>{symptom}</span></li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <!-- HOW WE HELP -->
+  <section class="section section-tint" aria-labelledby="svc-help-title">
+    <div class="container">
+      <header class="section-head">
+        <p class="section-eyebrow">One-on-one care</p>
+        <h2 class="section-title" id="svc-help-title">{service.helpsHeading}</h2>
+      </header>
+      <div class="svc-helps">
+        {service.helps.map((p) => <p>{p}</p>)}
+      </div>
+    </div>
+  </section>
+
+  <!-- WHAT TO EXPECT -->
+  <section class="section" aria-labelledby="svc-expect-title">
+    <div class="container">
+      <header class="section-head">
+        <p class="section-eyebrow">Your first visit, step by step</p>
+        <h2 class="section-title" id="svc-expect-title">What happens, and what you can count on.</h2>
+      </header>
+      <ol class="checklist">
+        <li class="check-row">
+          <span class="check-mark" aria-hidden="true" set:html={checkSvg} />
+          <p class="check-text">Your insurance is verified <strong>before</strong> you arrive - no surprises at the front desk.</p>
+        </li>
+        <li class="check-row">
+          <span class="check-mark" aria-hidden="true" set:html={checkSvg} />
+          <p class="check-text">You're evaluated by <strong>Dr. Iftikhar himself</strong> - one-on-one, not handed to an aide.</p>
+        </li>
+        <li class="check-row">
+          <span class="check-mark" aria-hidden="true" set:html={checkSvg} />
+          <p class="check-text">You leave with a <strong>measurable plan</strong> and clear milestones, not a guess.</p>
+        </li>
+        <li class="check-row">
+          <span class="check-mark" aria-hidden="true" set:html={checkSvg} />
+          <p class="check-text">You'll get a <strong>text reminder</strong> before every appointment so nothing slips.</p>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- LOCATIONS -->
+  <section class="section section-tint" aria-labelledby="svc-loc-title">
+    <div class="container">
+      <header class="section-head">
+        <p class="section-eyebrow">Two locations</p>
+        <h2 class="section-title" id="svc-loc-title">Available at both offices.</h2>
+      </header>
+      <div class="svc-locations">
+        <a href="/floral-park-ny">
+          <h3>Floral Park</h3>
+          <p>259-13 Hillside Avenue · Open Tue, Thu &amp; Sat</p>
+        </a>
+        <a href="/carle-place-ny">
+          <h3>Carle Place</h3>
+          <p>495 Westbury Avenue · Open Mon, Wed, Fri &amp; Sat</p>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="section" aria-labelledby="svc-faq-title">
+    <div class="container container-narrow">
+      <header class="section-head">
+        <p class="section-eyebrow">Questions</p>
+        <h2 class="section-title" id="svc-faq-title">Common questions about {service.h1}.</h2>
+      </header>
+      {service.faqs.map((f) => (
+        <details class="faq-item">
+          <summary>{f.q}</summary>
+          <p>{f.a}</p>
+        </details>
+      ))}
+    </div>
+  </section>
+
+  <BookingSection />
+
+  {related.length > 0 && (
+    <section class="section section-tint">
+      <div class="container">
+        <header class="section-head">
+          <p class="section-eyebrow">Related</p>
+          <h2 class="section-title">Other ways we can help.</h2>
+        </header>
+        <div class="svc-related">
+          {related.map((r) => <a href={`/services/${r.slug}/`}>{r.title}</a>)}
+        </div>
+      </div>
+    </section>
+  )}
+
+</BaseLayout>

@@ -1,0 +1,61 @@
+/* ===== Service / treatment pages ===== */
+
+.svc-hero {
+  background: linear-gradient(180deg, var(--forest) 0%, var(--forest-deep) 100%);
+  color: var(--cream);
+  padding: clamp(56px, 9vw, 104px) 0;
+}
+.svc-hero__inner { max-width: var(--wrap-narrow); margin: 0 auto; padding: 0 24px; }
+.svc-hero__eyebrow { color: var(--copper-bright); font-family: var(--font-body); font-weight: 600; letter-spacing: .08em; text-transform: uppercase; font-size: .8rem; margin: 0 0 16px; }
+.svc-hero__title { font-family: var(--font-display); font-weight: 600; font-size: var(--fs-h1); line-height: 1.04; margin: 0 0 20px; }
+.svc-hero__title .mark { color: var(--copper-bright); font-style: italic; }
+.svc-hero__sub { font-size: var(--fs-lg); line-height: 1.55; color: var(--sage); max-width: 62ch; margin: 0 0 30px; }
+.svc-hero__cta { display: flex; gap: 14px; flex-wrap: wrap; }
+.svc-hero__cta .btn-ghost { background: transparent; color: var(--cream); border: 1.5px solid rgba(247, 245, 238, .55); }
+.svc-hero__cta .btn-ghost:hover { background: rgba(247, 245, 238, .1); }
+
+/* symptoms grid */
+.svc-symptoms { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px 28px; }
+.svc-symptoms li { display: flex; gap: 12px; align-items: flex-start; color: var(--ink); font-size: 1.02rem; }
+.svc-symptoms .ico { flex: 0 0 auto; width: 22px; height: 22px; margin-top: 1px; color: var(--copper); }
+.svc-symptoms .ico svg { width: 100%; height: 100%; }
+@media (max-width: 680px) { .svc-symptoms { grid-template-columns: 1fr; } }
+
+/* how we help */
+.svc-helps { max-width: 68ch; }
+.svc-helps p { font-size: 1.05rem; line-height: 1.65; color: var(--ink); margin: 0 0 16px; }
+.svc-helps p:last-child { margin-bottom: 0; }
+
+/* locations */
+.svc-locations { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+.svc-locations a {
+  display: block; padding: 18px 20px; border-radius: var(--radius);
+  background: var(--cream-2); border: 1px solid var(--cream-3); color: var(--ink);
+  text-decoration: none;
+}
+.svc-locations a:hover { border-color: var(--copper); }
+.svc-locations h3 { font-family: var(--font-display); margin: 0 0 2px; font-size: 1.2rem; }
+.svc-locations p { margin: 0; color: var(--sage-deep); font-size: .95rem; }
+@media (max-width: 680px) { .svc-locations { grid-template-columns: 1fr; } }
+
+/* related services */
+.svc-related { display: flex; flex-wrap: wrap; gap: 10px; }
+.svc-related a {
+  display: inline-block; padding: 8px 16px; border-radius: 999px;
+  background: var(--cream-2); border: 1px solid var(--cream-3); color: var(--ink);
+  text-decoration: none; font-size: .95rem;
+}
+.svc-related a:hover { border-color: var(--copper); color: var(--copper); }
+
+/* hub grid (/services/) */
+.svc-hub { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+.svc-card {
+  display: block; padding: 22px; border-radius: var(--radius);
+  background: var(--cream-2); border: 1px solid var(--cream-3); color: var(--ink);
+  text-decoration: none; transition: transform .15s ease, border-color .15s ease;
+}
+.svc-card:hover { border-color: var(--copper); transform: translateY(-2px); }
+.svc-card h3 { font-family: var(--font-display); margin: 0 0 6px; font-size: 1.15rem; }
+.svc-card p { margin: 0; color: var(--sage-deep); font-size: .92rem; line-height: 1.5; }
+@media (max-width: 900px) { .svc-hub { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 600px) { .svc-hub { grid-template-columns: 1fr; } }
