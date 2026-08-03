@@ -142,7 +142,11 @@
   }
 
   // initialize Cal.com embed to the active location
-  var initialLoc = (heroOptions.filter(function (o) { return o.classList.contains("is-active"); })[0] || {}).dataset.loc || "hillside";
+  var initialLoc = (function () {
+    var h = heroOptions.filter(function (o) { return o.classList.contains("is-active"); })[0];
+    var b = bookOptions.filter(function (o) { return o.classList.contains("is-active"); })[0];
+    return (h && h.dataset.loc) || (b && b.dataset.loc) || "hillside";
+  })();
   selectLocation(initialLoc);
 
   /* ---------- FAQ: close others on open (accordion-lite, optional a11y nicety) ---------- */
