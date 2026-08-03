@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="FAAST Physical Therapy">
+  <defs>
+    <linearGradient id="tile" x1="0" y1="0" x2="0.35" y2="1">
+      <stop offset="0" stop-color="#234A37"/>
+      <stop offset="1" stop-color="#15291F"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Forest tile -->
+  <rect width="64" height="64" rx="15" fill="url(#tile)"/>
+
+  <!-- Italic F + copper speed streak, leaning forward together -->
+  <g transform="skewX(-16)">
+    <!-- Cream F -->
+    <g fill="#F7F5EE">
+      <rect x="18" y="13" width="12" height="39" rx="1.5"/>   <!-- stem -->
+      <rect x="18" y="13" width="32" height="11" rx="1.5"/>   <!-- top arm -->
+      <rect x="18" y="30" width="25" height="9" rx="1.5"/>    <!-- mid arm -->
+    </g>
+    <!-- Copper motion streak (forward/upward) -->
+    <rect x="40" y="49" width="20" height="5" rx="2.5" fill="#C26A33"/>
+  </g>
+</svg>
