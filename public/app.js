@@ -49,13 +49,13 @@
 
   /* ---------- Pain map ---------- */
   var CONDITIONS = {
-    neck:    { title: "Neck & whiplash", body: "Stiffness, tension headaches, and post-accident whiplash. We restore range of motion and retrain the muscles that keep your head balanced - so it stops stealing your sleep and your focus." },
-    shoulder:{ title: "Shoulder & rotator cuff", body: "Rotator cuff strains, frozen shoulder, and impingement that make reaching overhead a gamble. Hands-on mobilization and a progressive loading plan bring full, pain-free motion back." },
-    elbow:   { title: "Elbow, wrist & hand", body: "Tennis and golfer's elbow, carpal tunnel, and sprains. We quiet the inflammation, correct the mechanics that caused it, and rebuild grip and wrist strength." },
-    back:    { title: "Lower back & sciatica", body: "The number-one reason people walk in. Disc issues, sciatica, muscle strains, and stiffness that won't quit - assessed hands-on and treated with a clear plan to get you bending, lifting, and sleeping comfortably again." },
-    hip:     { title: "Hip & pelvis", body: "Bursitis, post-surgical recovery, and the gait problems that travel down your leg. We rebuild stability and movement so each step stops sending pain elsewhere." },
-    knee:    { title: "Knee & leg", body: "ACL and meniscus rehab, post-op recovery, and arthritis. A structured progression restores strength and confidence - whether you're returning to sport or just to the stairs." },
-    ankle:   { title: "Ankle & foot", body: "Sprains, plantar fasciitis, and Achilles trouble. We rebuild balance and the support chain above the ankle so it stops rolling and stops hurting with every step." }
+    neck:    { title: "Neck & whiplash", slug: "neck-pain-whiplash", body: "Stiffness, tension headaches, and post-accident whiplash. We restore range of motion and retrain the muscles that keep your head balanced - so it stops stealing your sleep and your focus." },
+    shoulder:{ title: "Shoulder & rotator cuff", slug: "shoulder-rotator-cuff", body: "Rotator cuff strains, frozen shoulder, and impingement that make reaching overhead a gamble. Hands-on mobilization and a progressive loading plan bring full, pain-free motion back." },
+    elbow:   { title: "Elbow, wrist & hand", slug: "elbow-wrist-hand", body: "Tennis and golfer's elbow, carpal tunnel, and sprains. We quiet the inflammation, correct the mechanics that caused it, and rebuild grip and wrist strength." },
+    back:    { title: "Lower back & sciatica", slug: "lower-back-pain-sciatica", body: "The number-one reason people walk in. Disc issues, sciatica, muscle strains, and stiffness that won't quit - assessed hands-on and treated with a clear plan to get you bending, lifting, and sleeping comfortably again." },
+    hip:     { title: "Hip & pelvis", slug: "hip-and-pelvis", body: "Bursitis, post-surgical recovery, and the gait problems that travel down your leg. We rebuild stability and movement so each step stops sending pain elsewhere." },
+    knee:    { title: "Knee & leg", slug: "knee-and-leg", body: "ACL and meniscus rehab, post-op recovery, and arthritis. A structured progression restores strength and confidence - whether you're returning to sport or just to the stairs." },
+    ankle:   { title: "Ankle & foot", slug: "ankle-and-foot", body: "Sprains, plantar fasciitis, and Achilles trouble. We rebuild balance and the support chain above the ankle so it stops rolling and stops hurting with every step." }
   };
 
   var zones = Array.prototype.slice.call(document.querySelectorAll(".zone"));
@@ -69,6 +69,12 @@
     items.forEach(function (i) { i.classList.toggle("is-active", i.dataset.zone === key); });
     if (panelTitle) panelTitle.textContent = CONDITIONS[key].title;
     if (panelBody) panelBody.textContent = CONDITIONS[key].body;
+    var more = document.getElementById("panelMore");
+    if (more) {
+      more.setAttribute("href", "/services/" + CONDITIONS[key].slug + "/");
+      var moreLabel = more.querySelector(".panel-more__label");
+      if (moreLabel) moreLabel.textContent = "Learn more about " + CONDITIONS[key].title;
+    }
   }
 
   zones.forEach(function (z) {
