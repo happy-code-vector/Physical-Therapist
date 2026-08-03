@@ -1,9 +1,36 @@
 ---
+import { Image } from 'astro:assets';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import PainMap from '../components/PainMap.astro';
 import LocationsSection from '../components/LocationsSection.astro';
 import FaqSection from '../components/FaqSection.astro';
 import BookingSection from '../components/BookingSection.astro';
+import handsOn from '../assets/pt-hands-on.jpg';
+import strength from '../assets/pt-strength.jpg';
+import armExercises from '../assets/pt-arm-exercises.jpg';
+import mobility from '../assets/pt-mobility.jpg';
+import guidedCare from '../assets/pt-guided-care.jpg';
+import providerImg from '../assets/dr-iftikhar.jpg';
+
+const SITE = 'https://faastpt.com';
+const providerImageURL = new URL(providerImg.src, SITE).href;
+
+// E-E-A-T: identify the practitioner as a Person in the knowledge graph,
+// linked back to the practice via worksFor. Only fields we can stand behind.
+const providerSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  '@id': 'https://faastpt.com/#dr-asim-iftikhar',
+  name: 'Dr. Asim Iftikhar, DPT',
+  givenName: 'Asim',
+  familyName: 'Iftikhar',
+  jobTitle: 'Doctor of Physical Therapy',
+  description: 'Doctor of Physical Therapy and owner of FAAST Physical Therapy in Floral Park and Carle Place, NY.',
+  image: providerImageURL,
+  url: 'https://faastpt.com/#provider',
+  worksFor: { '@id': 'https://faastpt.com/#floral-park' },
+  knowsAbout: ['Physical Therapy', 'Orthopedic Rehabilitation', 'Post-Surgical Rehabilitation', 'Manual Therapy'],
+};
 ---
 <BaseLayout
   title="FAAST Physical Therapy - Get moving again | Floral Park & Carle Place, NY"
@@ -41,7 +68,8 @@ import BookingSection from '../components/BookingSection.astro';
       { "@type": "OpeningHoursSpecification", "dayOfWeek": "Saturday", "opens": "12:00", "closes": "18:00" }
     ],
     "sameAs": ["https://www.google.com/maps/place/FAAST+Physical+Therapy/@40.737474,-73.7113189,17z/data=!4m8!3m7!1s0x89c263003012487f:0xa109b8778c3c518a!8m2!3d40.73747!4d-73.708744!9m1!1b1!16s%2Fg%2F11mcbyt12n"],
-    "aggregateRating": { "@type": "AggregateRating", "ratingValue": "5.0", "reviewCount": "6" }
+    "aggregateRating": { "@type": "AggregateRating", "ratingValue": "5.0", "reviewCount": "6" },
+    "employee": { "@id": "https://faastpt.com/#dr-asim-iftikhar" }
   }
   </script>
   <script type="application/ld+json">
@@ -89,6 +117,7 @@ import BookingSection from '../components/BookingSection.astro';
     ]
   }
   </script>
+  <script type="application/ld+json" set:html={JSON.stringify(providerSchema)} />
   </Fragment>
 
   <span id="top"></span>
@@ -137,11 +166,11 @@ import BookingSection from '../components/BookingSection.astro';
 
       <div class="hero-media">
         <div class="hero-carousel" role="img" aria-label="Photos of one-on-one physical therapy sessions.">
-          <img class="hero-slide" src="/images/pt-hands-on.jpg" alt="" width="1280" height="853" loading="eager" fetchpriority="high" />
-          <img class="hero-slide" src="/images/pt-strength.jpg" alt="" width="1280" height="675" loading="lazy" />
-          <img class="hero-slide" src="/images/pt-arm-exercises.jpg" alt="" width="1280" height="853" loading="lazy" />
-          <img class="hero-slide" src="/images/pt-mobility.jpg" alt="" width="1280" height="853" loading="lazy" />
-          <img class="hero-slide" src="/images/pt-guided-care.jpg" alt="" width="1280" height="470" loading="lazy" />
+          <Image src={handsOn} alt="" class="hero-slide" widths={[480, 768, 1024, 1280]} sizes="(max-width: 1100px) 560px, 45vw" format="webp" loading="eager" fetchpriority="high" />
+          <Image src={strength} alt="" class="hero-slide" widths={[480, 768, 1024, 1280]} sizes="(max-width: 1100px) 560px, 45vw" format="webp" loading="lazy" />
+          <Image src={armExercises} alt="" class="hero-slide" widths={[480, 768, 1024, 1280]} sizes="(max-width: 1100px) 560px, 45vw" format="webp" loading="lazy" />
+          <Image src={mobility} alt="" class="hero-slide" widths={[480, 768, 1024, 1280]} sizes="(max-width: 1100px) 560px, 45vw" format="webp" loading="lazy" />
+          <Image src={guidedCare} alt="" class="hero-slide" widths={[480, 768, 1024, 1280]} sizes="(max-width: 1100px) 560px, 45vw" format="webp" loading="lazy" />
         </div>
       </div>
     </div>
@@ -273,7 +302,7 @@ import BookingSection from '../components/BookingSection.astro';
     <div class="container">
       <div class="provider">
         <div class="provider-photo">
-          <img src="/images/dr-iftikhar.jpg" alt="Dr. Asim Iftikhar, Doctor of Physical Therapy and practice owner" width="619" height="1100" loading="lazy" />
+          <Image src={providerImg} alt="Dr. Asim Iftikhar, Doctor of Physical Therapy and practice owner" widths={[360, 480, 619]} sizes="(max-width: 860px) 320px, 360px" format="webp" loading="lazy" />
         </div>
         <div class="provider-body">
           <p class="section-eyebrow">Your therapist</p>
