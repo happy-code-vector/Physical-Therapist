@@ -1,0 +1,218 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import BookingSection from '../components/BookingSection.astro';
+import FaqSection from '../components/FaqSection.astro';
+import '../styles/location.css';
+
+const SITE = Astro.site ?? new URL('https://faastpt.com');
+const pageURL = new URL('/carle-place-ny', SITE).href;
+
+const pt = {
+  '@context': 'https://schema.org',
+  '@type': 'PhysicalTherapy',
+  '@id': 'https://faastpt.com/#carle-place',
+  name: 'FAAST Physical Therapy - Carle Place',
+  description: "One-on-one physical therapy with Dr. Asim Iftikhar in Carle Place, NY. Open Mon, Wed, Fri & Sat at 495 Westbury Avenue. Most insurance accepted, plus No-Fault and Workers' Comp. No referral needed.",
+  url: pageURL,
+  telephone: '+15167896322',
+  priceRange: '$$',
+  image: 'https://faastpt.com/images/og-default.jpg',
+  medicalSpecialty: 'PhysicalTherapy',
+  parentOrganization: { '@type': 'MedicalBusiness', name: 'FAAST Physical Therapy', url: 'https://faastpt.com' },
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: '495 Westbury Avenue',
+    addressLocality: 'Carle Place',
+    addressRegion: 'NY',
+    postalCode: '11514',
+    addressCountry: 'US',
+  },
+  geo: { '@type': 'GeoCoordinates', latitude: 40.7510426, longitude: -73.6061651 },
+  hasMap: 'https://maps.app.goo.gl/Hs3ZKSKZV19UeHKa9',
+  areaServed: [
+    { '@type': 'City', name: 'Carle Place, NY' },
+    { '@type': 'City', name: 'Floral Park, NY' },
+  ],
+  openingHoursSpecification: [
+    { '@type': 'OpeningHoursSpecification', dayOfWeek: ['Monday', 'Wednesday', 'Friday'], opens: '10:00', closes: '19:00' },
+    { '@type': 'OpeningHoursSpecification', dayOfWeek: 'Saturday', opens: '09:00', closes: '12:00' },
+  ],
+};
+
+const breadcrumb = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://faastpt.com/' },
+    { '@type': 'ListItem', position: 2, name: 'Carle Place, NY', item: pageURL },
+  ],
+};
+---
+<BaseLayout
+  title="Physical Therapy in Carle Place, NY | FAAST Physical Therapy"
+  description="One-on-one physical therapy with Dr. Asim Iftikhar in Carle Place, NY. Open Mon, Wed, Fri & Sat at 495 Westbury Avenue. Most insurance accepted, plus No-Fault and Workers' Comp. No referral needed to start."
+  ogTitle="Physical Therapy in Carle Place, NY - FAAST Physical Therapy">
+
+  <Fragment slot="schema">
+    <script type="application/ld+json" set:html={JSON.stringify(pt)} />
+    <script type="application/ld+json" set:html={JSON.stringify(breadcrumb)} />
+  </Fragment>
+
+  <!-- HERO -->
+  <section class="loc-hero">
+    <div class="loc-hero__inner">
+      <p class="loc-hero__eyebrow">FAAST Physical Therapy</p>
+      <h1 class="loc-hero__title">Physical therapy in <span class="mark">Carle Place</span>, NY</h1>
+      <p class="loc-hero__sub">
+        One-on-one care with Dr. Asim Iftikhar at 495 Westbury Avenue. No referral
+        needed to start - we verify your insurance before your first visit, and most
+        plans are accepted, plus No-Fault and Workers' Comp.
+      </p>
+      <div class="loc-hero__cta">
+        <a class="btn btn-copper-solid" href="#book">Book at Carle Place</a>
+        <a class="btn btn-ghost" href="tel:+15167896322">(516) 789-6322</a>
+      </div>
+      <ul class="loc-hero__trust">
+        <li><span aria-hidden="true">★★★★★</span> 5.0 on Google</li>
+        <li>Every session with your therapist</li>
+        <li>Open Mon · Wed · Fri · Sat</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- VISIT + MAP -->
+  <section class="section section-tint" aria-labelledby="cp-visit-title">
+    <div class="container">
+      <header class="section-head">
+        <p class="section-eyebrow">Visit us in Carle Place</p>
+        <h2 class="section-title" id="cp-visit-title">495 Westbury Avenue, Carle Place, NY 11514</h2>
+      </header>
+
+      <div class="loc-essentials">
+        <article class="loc-card loc-card--solid">
+          <div class="loc-head">
+            <h3 class="loc-name">Carle Place</h3>
+            <p class="loc-area">Carle Place, NY</p>
+          </div>
+          <p class="loc-days"><span class="dot"></span> Open <strong>Mon · Wed · Fri · Sat</strong></p>
+          <p class="loc-addr">495 Westbury Avenue, Carle Place, NY 11514</p>
+          <table class="loc-hours">
+            <tr><th scope="row">Mon, Wed, Fri</th><td>10:00 AM - 7:00 PM</td></tr>
+            <tr><th scope="row">Tue, Thu</th><td>At Hillside (Floral Park)</td></tr>
+            <tr><th scope="row">Sat</th><td>9:00 AM - 12:00 PM</td></tr>
+            <tr><th scope="row">Sun</th><td>Closed</td></tr>
+          </table>
+          <ul class="loc-meta">
+            <li><strong>Languages</strong> English, Urdu, Hindi, Punjabi</li>
+          </ul>
+          <div class="loc-actions">
+            <a class="loc-link" href="https://maps.app.goo.gl/Hs3ZKSKZV19UeHKa9" target="_blank" rel="noopener">Directions <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M5 12h12.2l-4.6-4.6L14 6l7 6-7 6-1.4-1.4 4.6-4.6H5z"/></svg></a>
+            <a class="loc-link loc-link-phone" href="tel:+15167896322">(516) 789-6322</a>
+          </div>
+        </article>
+
+        <div class="loc-map">
+          <iframe
+            title="Map to FAAST Physical Therapy, 495 Westbury Avenue, Carle Place, NY"
+            src="https://maps.google.com/maps?q=495+Westbury+Ave%2C+Carle+Place%2C+NY+11514&z=15&output=embed"
+            loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHAT WE TREAT -->
+  <section class="section" aria-labelledby="cp-treat-title">
+    <div class="container">
+      <header class="section-head">
+        <p class="section-eyebrow">What we treat</p>
+        <h2 class="section-title" id="cp-treat-title">Hands-on care for the pain slowing you down.</h2>
+        <p class="section-intro">
+          Every session is one-on-one with Dr. Iftikhar. If your condition isn't
+          listed, call (516) 789-6322 - odds are we treat it.
+        </p>
+      </header>
+      <ul class="ins-chips" aria-label="Conditions we treat">
+        <li class="chip">Lower back &amp; sciatica</li>
+        <li class="chip">Neck &amp; whiplash</li>
+        <li class="chip">Shoulder &amp; rotator cuff</li>
+        <li class="chip">Knee &amp; leg</li>
+        <li class="chip">Hip &amp; pelvis</li>
+        <li class="chip">Elbow, wrist &amp; hand</li>
+        <li class="chip">Ankle &amp; foot</li>
+        <li class="chip">Post-surgical rehab</li>
+        <li class="chip">Auto injury / No-Fault</li>
+        <li class="chip">Work injury / Workers' Comp</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- WHAT TO EXPECT -->
+  <section class="section section-tint" aria-labelledby="cp-expect-title">
+    <div class="container">
+      <header class="section-head">
+        <p class="section-eyebrow">Your first visit, step by step</p>
+        <h2 class="section-title" id="cp-expect-title">What happens, and what you can count on.</h2>
+      </header>
+      <ol class="checklist">
+        <li class="check-row">
+          <span class="check-mark" aria-hidden="true"><svg viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg></span>
+          <p class="check-text">Your insurance is verified <strong>before</strong> you arrive - no surprises at the front desk.</p>
+        </li>
+        <li class="check-row">
+          <span class="check-mark" aria-hidden="true"><svg viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg></span>
+          <p class="check-text">You're evaluated by <strong>Dr. Iftikhar himself</strong> - one-on-one, not handed to an aide.</p>
+        </li>
+        <li class="check-row">
+          <span class="check-mark" aria-hidden="true"><svg viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg></span>
+          <p class="check-text">You leave with a <strong>measurable plan</strong> and clear milestones, not a guess.</p>
+        </li>
+        <li class="check-row">
+          <span class="check-mark" aria-hidden="true"><svg viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg></span>
+          <p class="check-text">You'll get a <strong>text reminder</strong> before every appointment so nothing slips.</p>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- REVIEWS -->
+  <section class="section" id="reviews" aria-labelledby="cp-reviews-title">
+    <div class="container">
+      <header class="section-head">
+        <p class="section-eyebrow">5.0 stars on Google</p>
+        <h2 class="section-title" id="cp-reviews-title">What patients say.</h2>
+      </header>
+      <div class="review-grid">
+        <article class="review-card">
+          <p class="stars" aria-label="5 out of 5 stars">★★★★★</p>
+          <blockquote class="review-text">
+            The team at FAAST Physical Therapy has been treating my father for over 1 year now and he finds it very helpful for pain in his legs. I also recently sprained my ankle and they have helped in getting the swelling and pain down. They advised me on the trigger points to work on at home, which I had no idea about before I went to them.
+          </blockquote>
+          <p class="review-name">- Naveen</p>
+        </article>
+        <article class="review-card review-card--more">
+          <p class="review-more-text">Read every review on our Google listing.</p>
+          <a class="btn btn-copper-solid review-more-btn" href="https://www.google.com/maps/place/FAAST+Physical+Therapy/@40.737474,-73.7113189,17z/data=!4m8!3m7!1s0x89c263003012487f:0xa109b8778c3c518a!8m2!3d40.73747!4d-73.708744!9m1!1b1!16s%2Fg%2F11mcbyt12n" target="_blank" rel="noopener noreferrer">See all Google reviews</a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <FaqSection />
+
+  <BookingSection defaultLoc="carle" />
+
+  <!-- CROSS-LINK -->
+  <section class="section section-tint">
+    <div class="container">
+      <div class="loc-crosslink">
+        <div class="loc-crosslink__copy">
+          <h3>We also see patients in Floral Park</h3>
+          <p>Dr. Iftikhar's Hillside Avenue office - open Tue, Thu &amp; Sat.</p>
+        </div>
+        <a class="btn btn-copper" href="/floral-park-ny">Floral Park office</a>
+      </div>
+    </div>
+  </section>
+
+</BaseLayout>

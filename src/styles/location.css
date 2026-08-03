@@ -1,0 +1,44 @@
+/* ===== Location pages (Carle Place, Floral Park) ===== */
+
+.loc-hero {
+  background: linear-gradient(180deg, var(--forest) 0%, var(--forest-deep) 100%);
+  color: var(--cream);
+  padding: clamp(56px, 9vw, 104px) 0;
+}
+.loc-hero__inner { max-width: var(--wrap-narrow); margin: 0 auto; padding: 0 24px; text-align: center; }
+.loc-hero__eyebrow { color: var(--copper-bright); font-family: var(--font-body); font-weight: 600; letter-spacing: .08em; text-transform: uppercase; font-size: .8rem; margin: 0 0 16px; }
+.loc-hero__title { font-family: var(--font-display); font-weight: 600; font-size: var(--fs-h1); line-height: 1.04; margin: 0 0 20px; }
+.loc-hero__title .mark { color: var(--copper-bright); font-style: italic; }
+.loc-hero__sub { font-size: var(--fs-lg); line-height: 1.55; color: var(--sage); max-width: 58ch; margin: 0 auto 30px; }
+.loc-hero__cta { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; margin-bottom: 26px; }
+.loc-hero__cta .btn-ghost {
+  background: transparent;
+  color: var(--cream);
+  border: 1.5px solid rgba(247, 245, 238, .55);
+}
+.loc-hero__cta .btn-ghost:hover { background: rgba(247, 245, 238, .1); }
+.loc-hero__trust { list-style: none; margin: 0; padding: 0; display: flex; gap: 22px; justify-content: center; flex-wrap: wrap; color: var(--sage); font-size: .95rem; }
+.loc-hero__trust li { display: inline-flex; align-items: center; gap: 8px; }
+
+/* Essentials: location card + map */
+.loc-essentials { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr); gap: clamp(24px, 4vw, 44px); align-items: start; }
+.loc-essentials .loc-card { margin: 0; }
+.loc-map { border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow-card); background: var(--cream-2); }
+.loc-map iframe { display: block; width: 100%; height: 380px; border: 0; }
+
+/* Cross-link to the other location */
+.loc-crosslink {
+  display: flex; gap: 16px; align-items: center; justify-content: space-between; flex-wrap: wrap;
+  background: var(--cream-2); border: 1px solid var(--cream-3); border-radius: var(--radius);
+  padding: 22px 26px;
+}
+.loc-crosslink__copy { max-width: 60ch; }
+.loc-crosslink__copy h3 { font-family: var(--font-display); margin: 0 0 4px; font-size: var(--fs-xl); color: var(--ink); }
+.loc-crosslink__copy p { margin: 0; color: var(--sage-deep); }
+
+@media (max-width: 860px) {
+  .loc-essentials { grid-template-columns: 1fr; }
+  .loc-hero__inner { text-align: left; }
+  .loc-hero__cta { justify-content: flex-start; }
+  .loc-hero__trust { justify-content: flex-start; }
+}
