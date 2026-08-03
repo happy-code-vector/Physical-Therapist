@@ -522,7 +522,6 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 .foot-col a, .foot-col p { display: block; color: var(--sage); text-decoration: none; margin: 0 0 8px; font-size: .98rem; }
 .foot-col a:hover { color: var(--copper-bright); }
 .foot-bottom { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; border-top: 1px solid rgba(255,255,255,.1); padding: 22px 24px; font-size: .85rem; }
-.foot-demo-note { font-style: italic; opacity: .8; }
 
 /* ============================================================
    RESPONSIVE - condensation ladder + grid collapse
