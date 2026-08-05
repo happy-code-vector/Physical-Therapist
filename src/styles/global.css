@@ -491,8 +491,11 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 .section-dark .section-head { text-align: center; margin-left: auto; margin-right: auto; }
 .book-toggle-wrap { display: flex; justify-content: center; }
 
-.booking-grid { display: grid; grid-template-columns: 1.4fr 1fr; gap: 32px; align-items: start; }
-.cal-embed { background: var(--bone); border-radius: var(--radius); padding: 12px; box-shadow: var(--shadow-card); min-height: 400px; }
+.booking-grid { display: grid; grid-template-columns: 1.4fr 1fr; gap: 32px; align-items: stretch; }
+/* Fixed height + internal scroll: Cal.com's embed height varies with content, so we cap
+   it and scroll inside rather than letting it blow out the grid. align-items:stretch
+   makes the "Prefer we call you?" column match this height so the two boxes align. */
+.cal-embed { background: var(--bone); border-radius: var(--radius); padding: 12px; box-shadow: var(--shadow-card); height: 640px; overflow-y: auto; overflow-x: hidden; }
 
 .callback { background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.12); border-radius: var(--radius); padding: 28px; }
 .callback-title { color: var(--cream); font-size: 1.4rem; margin: 0 0 6px; }
@@ -539,7 +542,7 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
   .nav-link[data-short]::before { /* reserved */ }
   .insurance { grid-template-columns: 1fr; }
   .booking-grid { grid-template-columns: 1fr; }
-  .cal-embed { order: 2; }
+  .cal-embed { order: 2; height: 560px; }
 }
 
 /* ≤1100: hero already stacks naturally (single column); treat grids collapse */
