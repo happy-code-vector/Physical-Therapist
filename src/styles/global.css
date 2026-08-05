@@ -495,7 +495,7 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 /* Fixed height + internal scroll: Cal.com's embed height varies with content, so we cap
    it and scroll inside rather than letting it blow out the grid. align-items:stretch
    makes the "Prefer we call you?" column match this height so the two boxes align. */
-.cal-embed { background: var(--bone); border-radius: var(--radius); padding: 12px; box-shadow: var(--shadow-card); height: 640px; overflow-y: auto; overflow-x: hidden; }
+.cal-embed { background: var(--bone); border-radius: var(--radius); box-shadow: var(--shadow-card); height: 640px; overflow-y: auto; overflow-x: hidden; }
 
 .callback { background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.12); border-radius: var(--radius); padding: 28px; }
 .callback-title { color: var(--cream); font-size: 1.4rem; margin: 0 0 6px; }
