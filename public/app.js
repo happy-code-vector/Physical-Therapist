@@ -155,6 +155,41 @@
   })();
   selectLocation(initialLoc);
 
+  /* ---------- Callback form success modal ---------- */
+  var callbackForm = document.querySelector('form[name="callback"]');
+  var callbackModal = document.getElementById("callbackModal");
+  if (callbackForm && callbackModal) {
+    var closeCallbackModal = function () {
+      callbackModal.hidden = true;
+      document.body.classList.remove("modal-open");
+    };
+    callbackModal.querySelectorAll(".callback-modal__close, .callback-modal__done").forEach(function (button) {
+      button.addEventListener("click", closeCallbackModal);
+    });
+    callbackModal.addEventListener("click", function (event) {
+      if (event.target === callbackModal) closeCallbackModal();
+    });
+    callbackForm.addEventListener("submit", function (event) {
+      event.preventDefault();
+      var submit = callbackForm.querySelector(".cb-submit");
+      if (submit) { submit.disabled = true; submit.textContent = "Sending..."; }
+      fetch("/", {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: new URLSearchParams(new FormData(callbackForm)).toString()
+      }).then(function (response) {
+        if (!response.ok) throw new Error("Callback request failed");
+        callbackForm.reset();
+        callbackModal.hidden = false;
+        document.body.classList.add("modal-open");
+      }).catch(function () {
+        alert("We couldn't send your request. Please call us at (516) 789-6322.");
+      }).finally(function () {
+        if (submit) { submit.disabled = false; submit.textContent = "Request a callback"; }
+      });
+    });
+  }
+
   /* ---------- FAQ: close others on open (accordion-lite, optional a11y nicety) ---------- */
   var faqItems = Array.prototype.slice.call(document.querySelectorAll(".faq-item"));
   faqItems.forEach(function (item) {

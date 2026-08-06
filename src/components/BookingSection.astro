@@ -78,4 +78,14 @@ const { defaultLoc = 'hillside' } = Astro.props;
         </aside>
       </div>
     </div>
+
+    <div class="callback-modal" id="callbackModal" role="dialog" aria-modal="true" aria-labelledby="callbackModalTitle" hidden>
+      <div class="callback-modal__card">
+        <button class="callback-modal__close" type="button" aria-label="Close thank-you message">&times;</button>
+        <p class="section-eyebrow">Request received</p>
+        <h2 id="callbackModalTitle">Thank you.</h2>
+        <p>We received your callback request. Our team will reach out within one business day.</p>
+        <button class="btn btn-copper-solid callback-modal__done" type="button">Done</button>
+      </div>
+    </div>
   </section>

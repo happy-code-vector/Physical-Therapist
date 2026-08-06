@@ -513,6 +513,14 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 .cb-submit { width: 100%; margin-top: 6px; }
 .callback-alt { margin: 16px 0 0; color: var(--sage); font-size: .95rem; text-align: center; }
 .callback-alt a { color: #fff; font-weight: 700; }
+.modal-open { overflow: hidden; }
+.callback-modal { position: fixed; inset: 0; z-index: 1000; display: grid; place-items: center; padding: 20px; background: rgba(14,31,26,.72); }
+.callback-modal[hidden] { display: none; }
+.callback-modal__card { position: relative; width: min(100%, 470px); padding: 38px; border-radius: var(--radius); background: var(--cream); color: var(--ink); box-shadow: 0 24px 70px rgba(0,0,0,.3); }
+.callback-modal__card h2 { margin: 4px 0 10px; color: var(--forest); }
+.callback-modal__card p:not(.section-eyebrow) { margin: 0 0 24px; }
+.callback-modal__close { position: absolute; top: 12px; right: 16px; border: 0; background: transparent; color: var(--forest); font-size: 2rem; line-height: 1; cursor: pointer; }
+.callback-modal__done { border: 0; cursor: pointer; }
 .hp { display: none; }
 
 /* ============================================================

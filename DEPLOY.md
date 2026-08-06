@@ -69,7 +69,7 @@ Other root artifacts (`desktop-hero.png`, `pain-map.png`, `mobile-hero-390.png`,
    ```
    This drives every absolute URL: sitemap, RSS, and post `mainEntityOfPage`. The placeholder currently appears in all three (verified). Do this before deploy so search engines and feed readers see real URLs.
 4. **First deploy** will run `npm install` then `npm run build`. Expect the 3 transitive-dependency npm-audit vulns (1 low, 2 high) to print — they are build-time-only and do not ship in `dist/`. Optional pre-deploy cleanup, not a blocker.
-5. **Forms** — the callback form uses Netlify Forms (`data-netlify="true"`). Astro emits it as static HTML, so Netlify's form detection works unchanged. No action needed.
+5. **Forms** — the callback form uses Netlify Forms (`data-netlify="true"`). Astro emits it as static HTML, so Netlify's form detection works unchanged. In the Netlify dashboard, add a form notification for the `callback` form addressed to **drasim@faastpt.com**. The form submission success modal is handled in `public/app.js`.
 
 ## Open items (human-side; not invented — carried from the spec)
 
