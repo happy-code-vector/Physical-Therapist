@@ -44,7 +44,7 @@ const { defaultLoc = 'hillside' } = Astro.props;
           <p class="callback-sub">Leave your number and a preferred location. We'll reach out within one business day to find a time. <span class="cue-light">No medical details here, please - we'll take those in person.</span></p>
 
           <!-- Netlify Forms: works on Netlify deploy with zero backend -->
-          <form class="cb-form" name="callback" method="POST" data-netlify="true" netlify-honeypot="bot-field" netlify>
+          <form class="cb-form" name="callback" method="POST" netlify netlify-honeypot="bot-field">
             <input type="hidden" name="form-name" value="callback" />
             <p class="hp" aria-hidden="true"><label>Don't fill this out: <input name="bot-field" /></label></p>
 
