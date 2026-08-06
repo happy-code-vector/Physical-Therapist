@@ -159,6 +159,20 @@
   var callbackForm = document.querySelector('form[name="callback"]');
   var callbackModal = document.getElementById("callbackModal");
   if (callbackForm && callbackModal) {
+    var callbackPhoneInput = callbackForm.querySelector('input[name="phone"]');
+    function formatPhone(value) {
+      var digits = value.replace(/\D/g, "");
+      if (digits.length === 11 && digits.charAt(0) === "1") digits = digits.slice(1);
+      digits = digits.slice(0, 10);
+      if (digits.length > 6) return "(" + digits.slice(0, 3) + ") " + digits.slice(3, 6) + "-" + digits.slice(6);
+      if (digits.length > 3) return "(" + digits.slice(0, 3) + ") " + digits.slice(3);
+      return digits ? "(" + digits : "";
+    }
+    if (callbackPhoneInput) {
+      callbackPhoneInput.addEventListener("input", function () {
+        callbackPhoneInput.value = formatPhone(callbackPhoneInput.value);
+      });
+    }
     var closeCallbackModal = function () {
       callbackModal.hidden = true;
       document.body.classList.remove("modal-open");
@@ -172,9 +186,10 @@
     callbackForm.addEventListener("submit", function (event) {
       event.preventDefault();
       var callbackMessage = callbackForm.querySelector('input[name="callback_message"]');
-      var callbackName = callbackForm.querySelector('input[name="name"]');
+      var callbackName = callbackForm.querySelector('input[name="client_name"]');
       var callbackPhone = callbackForm.querySelector('input[name="phone"]');
       if (callbackMessage && callbackName && callbackPhone) {
+        callbackPhone.value = formatPhone(callbackPhone.value);
         callbackMessage.value = callbackName.value.trim() + " requested a callback with this number: " + callbackPhone.value.trim();
       }
       var submit = callbackForm.querySelector(".cb-submit");
