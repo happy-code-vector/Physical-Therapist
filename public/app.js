@@ -171,6 +171,12 @@
     });
     callbackForm.addEventListener("submit", function (event) {
       event.preventDefault();
+      var callbackMessage = callbackForm.querySelector('input[name="callback_message"]');
+      var callbackName = callbackForm.querySelector('input[name="name"]');
+      var callbackPhone = callbackForm.querySelector('input[name="phone"]');
+      if (callbackMessage && callbackName && callbackPhone) {
+        callbackMessage.value = callbackName.value.trim() + " requested a callback with this number: " + callbackPhone.value.trim();
+      }
       var submit = callbackForm.querySelector(".cb-submit");
       if (submit) { submit.disabled = true; submit.textContent = "Sending..."; }
       fetch("/", {
